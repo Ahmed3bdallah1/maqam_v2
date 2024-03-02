@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:maqam_v2/features/auth/presentation/view/sign_up.dart';
 
 import '../../../../core/constants.dart';
-import '../../../trips/presentation/view/HomeScreen/HomeScreen.dart';
+import '../../../trips/presentation/view/Screens/HomeScreen.dart';
+
 
 
 class LoginScreen extends StatefulWidget {

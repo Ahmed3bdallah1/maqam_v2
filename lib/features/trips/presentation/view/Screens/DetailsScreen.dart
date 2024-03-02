@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/constants.dart';
 import '../../../models/trip_model.dart';
-import '../ImageDetailsScreen/ImageDetailsScreen.dart';
+
 import '../widgets/image_view_widget.dart';
+import 'ImageDetailsScreen.dart';
 
 
 class DetailsScreen extends StatelessWidget {
