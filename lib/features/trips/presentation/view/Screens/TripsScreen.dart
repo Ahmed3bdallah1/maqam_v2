@@ -1,6 +1,9 @@
 
 import 'package:flutter/material.dart';
 
+import '../../../../../core/constants.dart';
+import '../SearchScreen/SearchScreen.dart';
+
 
 
 
@@ -83,12 +86,12 @@ class TripsScreen extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SeeAllLocationScreen(),
-                              ),
-                            );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => SeeAllLocationScreen(),
+                            //   ),
+                            // );
                           },
                           child: GestureDetector(
                             child: const Text('See All',
@@ -225,12 +228,11 @@ class TripsScreen extends StatelessWidget {
                 ]))
           ]);
         } else if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         } else {
-          print(snapshot.error);
-          return Center(
+          return const Center(
             child: Text("error"),
           );
         }

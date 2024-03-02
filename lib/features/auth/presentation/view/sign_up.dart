@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
+import '../../../../core/constants.dart';
+
+
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -22,16 +24,15 @@ class _SignUpState extends State<SignUp> {
             Positioned(
                 left: -130,
                 bottom: -150,
-                child: Container(
-                    child: Opacity(
-                  opacity: 0.5,
-                  child: Image.asset(
-                    'assets/images/img1.png',
-                    height: 500,
-                    width: 500,
-                    fit: BoxFit.cover,
-                  ),
-                ))),
+                child: Opacity(
+                                  opacity: 0.5,
+                                  child: Image.asset(
+                'assets/images/img1.png',
+                height: 500,
+                width: 500,
+                fit: BoxFit.cover,
+                                  ),
+                                )),
             Positioned(
               top: null,
               right: null,
@@ -50,13 +51,11 @@ class _SignUpState extends State<SignUp> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                            child: Image.asset(
-                              'assets/images/logo.png',
-                              height: 300,
-                              width: 500,
-                              fit: BoxFit.cover,
-                            ),
+                          Image.asset(
+                            'assets/images/logo.png',
+                            height: 300,
+                            width: 500,
+                            fit: BoxFit.cover,
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.8,

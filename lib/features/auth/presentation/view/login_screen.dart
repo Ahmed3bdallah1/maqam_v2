@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:maqam_v2/features/auth/presentation/view/sign_up.dart';
 
 import '../../../../core/constants.dart';
+import '../../../trips/presentation/view/HomeScreen/HomeScreen.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -24,33 +26,27 @@ class _LoginScreenState extends State<LoginScreen> {
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
-      print("Sign in with email and password successful!");
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
       );
     } catch (e) {
 
 
       String errorMessage = 'An error occurred, please check your credentials!';
-      print("Error signing in with email and password: $e");
       if (e is FirebaseAuthException) {
-        print(e.code);
         if (e.code == 'user-not-found') {
           errorMessage = 'No user found for that email.';
-          print('User not found. Please check your email.');
         } else if (e.code == 'wrong-password') {
           errorMessage = 'Wrong password provided for that user.';
-          print('Incorrect password. Please try again.');
         } else {
           errorMessage = 'An error occurred, please check your credentials!';
-          print('An error occurred: ${e.message}');
         }
 
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(errorMessage),
-            duration: Duration(seconds: 3),
+            duration: const Duration(seconds: 3),
           ),
         );
       }
@@ -228,8 +224,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                     GestureDetector(
                                       onTap: () {
-                                        Navigator.pushNamed(
-                                            context, AppRoutes.SignUpScreen);
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                     const SignUp()
+                                            )
+                                        );
                                       },
                                       child: const Text('Sign up',
                                           style: TextStyle(
