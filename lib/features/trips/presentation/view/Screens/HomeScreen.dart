@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: gray,
       ),
       backgroundColor: gray,
-      body: const TripsScreen(),
+      body: CartScereen(),
     );
   }
 }
