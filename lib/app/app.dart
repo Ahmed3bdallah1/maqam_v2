@@ -1,11 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maqam_v2/config/routes.dart';
 import 'package:maqam_v2/di_container.dart' as di;
 import 'package:maqam_v2/features/auth/presentation/controllers/auth_cubit.dart';
+import 'package:maqam_v2/features/auth/presentation/view/login_screen.dart';
 import 'package:maqam_v2/features/cart/presentation/controllers/cart_cubit.dart';
 import 'package:maqam_v2/features/search/presentation/controllers/search_cubit.dart';
 import 'package:maqam_v2/features/trips/presentation/controllers/trips_cubit.dart';
+import 'package:maqam_v2/features/trips/presentation/view/screens/drawer_screen.dart';
 import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
@@ -24,9 +27,20 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: AppRoutes.routes,
-        initialRoute: AppRoutes.loginScreen,
+        home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-        // home: HomeScreen(),
+            if (snapshot.hasData) {
+              return const DrawerPage();
+            }
+
+            return const LoginScreen();
+          },
+        ),
       ),
     );
   }

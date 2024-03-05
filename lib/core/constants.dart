@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
 class HexColor extends Color {
   HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
@@ -12,7 +13,7 @@ class HexColor extends Color {
   }
 }
 
- var Green = HexColor('#059843');
+var Green = HexColor('#059843');
 var yellow = HexColor('#E1D800');
-var gray= HexColor('#F7F7F7');
-
+var gray = HexColor('#F7F7F7');
+final ZoomDrawerController zoomDrawerController = ZoomDrawerController();

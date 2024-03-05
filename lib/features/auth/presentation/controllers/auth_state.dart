@@ -6,9 +6,9 @@ abstract class AuthState {}
 class AuthInitial extends AuthState {}
 
 class LoginSuccess extends AuthState {
-  final UserCredential userCredential;
+  final User? userCredential;
 
-  LoginSuccess({required this.userCredential});
+  LoginSuccess({this.userCredential});
 }
 
 class LoginError extends AuthState {

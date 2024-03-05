@@ -13,15 +13,38 @@ class AuthCubit extends Cubit<AuthState> {
 
   static AuthCubit get(BuildContext context) => BlocProvider.of(context);
 
-  Future<UserCredential?> login(
+  Future<void> login(BuildContext context,
       {required String email, required String password}) async {
     try {
       emit(LoginLoading());
-      final user = await authRepo.login(email: email, password: password);
+      final user=await authRepo.login(email: email, password: password);
 
-      emit(LoginSuccess(userCredential: user!));
-      return user;
+      emit(LoginSuccess(userCredential: user!.user));
     } catch (e) {
+      String errorMessage = 'An error occurred, please check your credentials!';
+      print("Error signing in with email and password: $e");
+      if (e is FirebaseAuthException) {
+        print(e.code);
+        if (e.code == 'user-not-found') {
+          errorMessage = 'No user found for that email.';
+          print('User not found. Please check your email.');
+        } else if (e.code == 'wrong-password') {
+          errorMessage = 'Wrong password provided for that user.';
+          print('Incorrect password. Please try again.');
+        } else {
+          errorMessage = 'An error occurred, please check your credentials!';
+          print('An error occurred: ${e.message}');
+        }
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(errorMessage),
+            duration: const Duration(seconds: 3),
+            backgroundColor: Colors.red,
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }
       emit(LoginError(error: e.toString()));
       return null;
     }

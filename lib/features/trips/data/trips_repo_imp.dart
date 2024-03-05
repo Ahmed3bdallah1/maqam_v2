@@ -70,11 +70,15 @@ class TripRepoImp extends TripRepo {
 
   @override
   Future<List<LocationModel>> getLocations() async {
+
     QuerySnapshot querySnapshot =
         await firestore.collection('locations').get();
-    return querySnapshot.docs
+    print(querySnapshot);
+     return querySnapshot.docs
         .map(
-            (doc) => LocationModel.fromJson(doc.data() as Map<String, dynamic>))
+            (doc) {
+               return  LocationModel.fromJson(doc.data() as Map<String, dynamic>);
+            })
         .toList();
   }
 }
