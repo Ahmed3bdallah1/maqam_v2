@@ -17,7 +17,7 @@ class AuthCubit extends Cubit<AuthState> {
       {required String email, required String password}) async {
     try {
       emit(LoginLoading());
-      final user=await authRepo.login(email: email, password: password);
+      final user = await authRepo.login(email: email, password: password);
 
       emit(LoginSuccess(userCredential: user!.user));
     } catch (e) {
@@ -92,4 +92,16 @@ class AuthCubit extends Cubit<AuthState> {
       return null;
     }
   }
+
+  bool userChecker() {
+    if (FirebaseAuth.instance.currentUser!.isAnonymous == true) {
+      emit(IsGuestTrue());
+      return true;
+    } else {
+      emit(IsGuestFalse());
+      return false;
+    }
+  }
+
+  bool get isGuest => userChecker();
 }

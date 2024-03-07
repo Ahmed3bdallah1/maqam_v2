@@ -6,6 +6,7 @@ import 'package:maqam_v2/core/constants.dart';
 import 'package:maqam_v2/features/auth/presentation/controllers/auth_cubit.dart';
 import 'package:maqam_v2/features/auth/presentation/controllers/auth_state.dart';
 import 'package:maqam_v2/features/auth/validation/validation.dart';
+import 'package:maqam_v2/features/trips/presentation/view/screens/drawer_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -21,8 +22,6 @@ class _LoginScreenState extends State<LoginScreen> {
   // final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
-  void login(BuildContext context) async {}
 
   @override
   Widget build(BuildContext context) {
@@ -175,18 +174,21 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 content: Text(
                                                     "welcome to our app${state.userCredential!.displayName ?? ""}"),
                                                 duration:
-                                                    const Duration(seconds: 2),
+                                                    const Duration(seconds: 3),
                                                 backgroundColor: Green,
                                                 behavior:
                                                     SnackBarBehavior.floating,
                                               ),
                                             );
+                                            Navigator.pushReplacement(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (_) =>
+                                                        const DrawerPage()));
                                           }
                                           // TODO: implement listener
                                         },
                                         builder: (context, state) {
-                                          AuthCubit cubit =
-                                              AuthCubit.get(context);
                                           if (state is LoginLoading) {
                                             return const Center(
                                                 child:
@@ -228,7 +230,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ),
                                     ),
                                     const SizedBox(
-                                      height: 20,
+                                      height: 10,
                                     ),
                                     Row(
                                       mainAxisAlignment:
@@ -237,7 +239,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         const Text(
                                           'Don\'t have an account?',
                                           style: TextStyle(
-                                            color: Colors.green,
+                                            color: Colors.black,
                                           ),
                                         ),
                                         const SizedBox(
@@ -255,6 +257,33 @@ class _LoginScreenState extends State<LoginScreen> {
                                               )),
                                         ),
                                       ],
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () async {
+                                        print("click");
+                                        await AuthCubit.get(context)
+                                            .authRepo
+                                            .signInAsGuest();
+                                      },
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const Text('continue as a guest',
+                                              style: TextStyle(
+                                                color: Colors.green,
+                                                fontWeight: FontWeight.bold,
+                                              )),
+                                          Icon(
+                                            Icons.arrow_forward_rounded,
+                                            size: 18,
+                                            color: Green,
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),

@@ -46,3 +46,5 @@ class GetUserError extends AuthState {
 }
 
 class GetUserLoading extends AuthState {}
+class IsGuestTrue extends AuthState {}
+class IsGuestFalse extends AuthState {}

@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:maqam_v2/app/app.dart';
 
 import 'package:maqam_v2/app/main.dart';
 

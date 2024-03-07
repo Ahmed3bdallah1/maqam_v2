@@ -83,4 +83,14 @@ class AuthRepoImp extends AuthRepo {
       return null;
     }
   }
+
+  @override
+  Future<UserCredential?> signInAsGuest() async {
+    try {
+      final user = await firebaseAuth.signInAnonymously();
+      return user;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }

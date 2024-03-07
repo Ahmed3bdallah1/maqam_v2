@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
             }
 
             if (snapshot.hasData) {
+              print(snapshot.data!.uid);
               return const DrawerPage();
             }
 

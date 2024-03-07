@@ -14,6 +14,7 @@ abstract class AuthRepo {
   });
 
   Future<UserModel?> getCurrentUserData();
+  Future<UserCredential?> signInAsGuest();
 
   Future<UserModel?> getUserDataById({required String userId});
 }
