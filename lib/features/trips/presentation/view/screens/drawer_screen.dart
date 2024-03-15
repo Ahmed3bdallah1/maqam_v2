@@ -130,11 +130,8 @@ class MenuScreen extends StatelessWidget {
                 return DrawerItem(
                   title: 'Logout',
                   icon: Icons.logout,
-                  index: -10,
+                  index: 4,
                   onTap: () async {
-                    if (cubit.isGuest == true) {
-                      FirebaseAuth.instance.currentUser!.delete();
-                    }
                     await FirebaseAuth.instance.signOut();
                   },
                 );
@@ -142,7 +139,7 @@ class MenuScreen extends StatelessWidget {
                 return DrawerItem(
                   title: 'Login',
                   icon: Icons.login_outlined,
-                  index: -10,
+                  index: 4,
                   onTap: () {
                     Navigator.pushReplacementNamed(
                         context, AppRoutes.loginScreen);
