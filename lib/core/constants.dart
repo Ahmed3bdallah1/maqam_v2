@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:image_picker/image_picker.dart';
 
 class HexColor extends Color {
   HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
@@ -17,3 +20,19 @@ var Green = HexColor('#059843');
 var yellow = HexColor('#E1D800');
 var gray = HexColor('#F7F7F7');
 final ZoomDrawerController zoomDrawerController = ZoomDrawerController();
+
+Future<File?> pickImage() async {
+  File? image;
+  final picker = ImagePicker();
+  final file = await picker.pickImage(
+    source: ImageSource.gallery,
+    maxHeight: 720,
+    maxWidth: 720,
+  );
+
+  if (file != null) {
+    image = File(file.path);
+  }
+
+  return image;
+}

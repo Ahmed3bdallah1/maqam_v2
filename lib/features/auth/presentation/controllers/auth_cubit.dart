@@ -103,5 +103,5 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  bool get isGuest => userChecker();
+
 }

@@ -108,7 +108,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 return GridView.builder(
                                     gridDelegate:
                                         const SliverGridDelegateWithFixedCrossAxisCount(
-                                            childAspectRatio: .95,
+                                            childAspectRatio: .85,
                                             crossAxisCount: 2),
                                     itemCount: tripsData.length,
                                     itemBuilder: (context, index) {

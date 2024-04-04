@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maqam_v2/core/constants.dart';
+import 'package:maqam_v2/features/cart/presentation/controllers/cart_cubit.dart';
+import 'package:maqam_v2/features/cart/presentation/controllers/cart_state.dart';
+import 'package:maqam_v2/features/cart/presentation/view/screen.dart';
 import 'package:maqam_v2/features/trips/models/trip_model.dart';
 import 'package:maqam_v2/features/trips/presentation/view/widgets/image_view%20widget.dart';
-
 import 'image_details_screen.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -133,28 +136,64 @@ class DetailsScreen extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 12,
-          vertical: 20,
-        ),
-        child: ElevatedButton(
-          onPressed: () async {
-            // await TripRepository().addToCart(trip);
-          },
-          style: ElevatedButton.styleFrom(
-            foregroundColor: Colors.white,
-            backgroundColor: Green,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-          ),
-          child: const Text("Booking Now",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              )),
-        ),
+      bottomNavigationBar: BlocConsumer<CartCubit, CartState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          final cubit = CartCubit.get(context);
+          return cubit.isTripInCart(trip) == true
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 20,
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (_) => const CartScreen(
+                      //               isRoot: false,
+                      //             )));
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Green,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    child: const Text("Already in cart",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        )),
+                  ),
+                )
+              : Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 20,
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      CartCubit.get(context).addToCart(trip);
+                      // await TripRepository().addToCart(trip);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Green,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    child: const Text("Book Now",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        )),
+                  ),
+                );
+        },
       ),
     );
   }
