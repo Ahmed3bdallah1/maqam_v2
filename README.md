@@ -1,16 +1,25 @@
-# maqam_v2
+# Maqam app
 
-A new Flutter project.
+The Maqam app is for traveling purposes using Bloc and Firebase configurations.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+⚫ Design Architecture: using a combination of features and MVVM Design pattern.
 
-A few resources to get you started if this is your first Flutter project:
+⚫ State management: using Bloc state management for efficient state management.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+⚫ Firebase Auth: Using Firebase auth to log in via account to get uid for every user.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+⚫ Firebase Auth: Using Firebase auth to continue as a guest.
+
+⚫ Firebase storage: Using Firebase storage to store and retrieve images and videos
+
+⚫ Firebase Firestore: Using Firebase for storing users, Trips and Reservations data.
+
+⚫ Packages: Using flutter_zoom_drawer package to display a friendly user interface.
+
+⚫ Packages: Using packages like (Flutter svg - Flutter bloc - flutter zoom drawer) for displaying the media in the app.
+
+⚫ Packages: Using Uuid package to generate a uid for every post, video, story, and chat rooms
+
+
