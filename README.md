@@ -26,4 +26,6 @@ The Maqam app is for traveling purposes using Bloc and Firebase configurations.
 ![maqam2](https://github.com/Ahmed3bdallah1/maqam_v2/assets/122252444/c1e6085e-ece9-499c-9258-1df39b0c467f)
 ![maqam4](https://github.com/Ahmed3bdallah1/maqam_v2/assets/122252444/acbf724c-d0d9-4d28-968d-5d0cab131ce3)
 ![maqam5](https://github.com/Ahmed3bdallah1/maqam_v2/assets/122252444/ab06fad9-ab8e-47f8-86ce-a01c6689f0a3)
-
+![maqam7](https://github.com/Ahmed3bdallah1/maqam_v2/assets/122252444/2ff91279-c785-418d-b435-b6be3c98f7c4)
+![maqam8](https://github.com/Ahmed3bdallah1/maqam_v2/assets/122252444/2f96600f-0219-4893-a042-d271d158d5d7)
+![maqam6](https://github.com/Ahmed3bdallah1/maqam_v2/assets/122252444/45245c6d-be0f-4c6b-8e37-0a68a3f19451)
