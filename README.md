@@ -22,4 +22,8 @@ The Maqam app is for traveling purposes using Bloc and Firebase configurations.
 
 ⚫ Packages: Using Uuid package to generate a uid for every post, video, story, and chat rooms
 
+![maqam1](https://github.com/Ahmed3bdallah1/maqam_v2/assets/122252444/02d9a58c-bfc0-4064-a242-2e2b7615db4e)
+![maqam2](https://github.com/Ahmed3bdallah1/maqam_v2/assets/122252444/c1e6085e-ece9-499c-9258-1df39b0c467f)
+![maqam4](https://github.com/Ahmed3bdallah1/maqam_v2/assets/122252444/acbf724c-d0d9-4d28-968d-5d0cab131ce3)
+![maqam5](https://github.com/Ahmed3bdallah1/maqam_v2/assets/122252444/ab06fad9-ab8e-47f8-86ce-a01c6689f0a3)
 
