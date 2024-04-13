@@ -21,7 +21,8 @@ The Maqam app is for traveling purposes using Bloc and Firebase configurations.
 ⚫ Packages: Using packages like (Flutter svg - Flutter bloc - flutter zoom drawer) for displaying the media in the app.
 
 ⚫ Packages: Using Uuid package to generate a uid for every post, video, story, and chat rooms
-
+![maqam9](https://github.com/Ahmed3bdallah1/maqam_v2/assets/122252444/840133d3-1cae-401b-91ad-2a6849524de2)
+![maqam10](https://github.com/Ahmed3bdallah1/maqam_v2/assets/122252444/0fb519b7-85f2-4751-b44d-64f051c340dd)
 ![maqam1](https://github.com/Ahmed3bdallah1/maqam_v2/assets/122252444/02d9a58c-bfc0-4064-a242-2e2b7615db4e)
 ![maqam2](https://github.com/Ahmed3bdallah1/maqam_v2/assets/122252444/c1e6085e-ece9-499c-9258-1df39b0c467f)
 ![maqam4](https://github.com/Ahmed3bdallah1/maqam_v2/assets/122252444/acbf724c-d0d9-4d28-968d-5d0cab131ce3)
