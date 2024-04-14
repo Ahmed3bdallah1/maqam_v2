@@ -15,7 +15,7 @@ class Trip {
       "name": name,
       "location": location,
       "description": description,
-      "images": images,
+      "image": images,
     };
   }
 
@@ -25,7 +25,40 @@ class Trip {
       name: map['name'] ?? '',
       location: map["location"] ?? '',
       images: List<String>.from(
-        (map["images"] ?? []),
+        (map["image"] ?? []),
+      ),
+    );
+  }
+}
+
+class Maqam {
+  final String name;
+  final String trip;
+  final String description;
+  final List<String> images;
+
+  Maqam(
+      {required this.name,
+      required this.trip,
+      required this.description,
+      required this.images});
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      "name": name,
+      "trip": trip,
+      "description": description,
+      "image": images,
+    };
+  }
+
+  factory Maqam.fromMap(Map<String, dynamic> map) {
+    return Maqam(
+      description: map["description"] ?? '',
+      name: map['name'] ?? '',
+      trip: map["trip"] ?? '',
+      images: List<String>.from(
+        (map["image"] ?? []),
       ),
     );
   }

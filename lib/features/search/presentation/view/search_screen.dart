@@ -113,7 +113,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                     itemCount: tripsData.length,
                                     itemBuilder: (context, index) {
                                       return SizedBox(
-                                        height: 200,
+                                        height: 220,
                                         width: 200,
                                         child: SearchTrips(
                                           tripe: tripsData[index],

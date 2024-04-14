@@ -69,16 +69,37 @@ class TripRepoImp extends TripRepo {
   }
 
   @override
-  Future<List<LocationModel>> getLocations() async {
+  Stream<Iterable<Maqam>> getMaqam(String tripName) {
+    print("ooooooooo");
+    final controller = StreamController<Iterable<Maqam>>();
 
-    QuerySnapshot querySnapshot =
-        await firestore.collection('locations').get();
+    final sub = firestore
+        .collection("maqam")
+        .where("trip", isEqualTo: tripName)
+        .snapshots()
+        .listen((snapshot) {
+      final maqamat = snapshot.docs.map(
+        (maqamData) => Maqam.fromMap(
+          maqamData.data(),
+        ),
+      );
+      controller.sink.add(maqamat);
+    });
+
+    controller.onCancel = () {
+      sub.cancel();
+      controller.close();
+    };
+
+    return controller.stream;
+  }
+
+  @override
+  Future<List<LocationModel>> getLocations() async {
+    QuerySnapshot querySnapshot = await firestore.collection('locations').get();
     print(querySnapshot);
-     return querySnapshot.docs
-        .map(
-            (doc) {
-               return  LocationModel.fromJson(doc.data() as Map<String, dynamic>);
-            })
-        .toList();
+    return querySnapshot.docs.map((doc) {
+      return LocationModel.fromJson(doc.data() as Map<String, dynamic>);
+    }).toList();
   }
 }

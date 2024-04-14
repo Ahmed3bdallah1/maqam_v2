@@ -23,6 +23,10 @@ class TripsCubit extends Cubit<TripsState> {
     return tripsRepo.getTrips();
   }
 
+  Stream<Iterable<Maqam>> getMaqam({required tripName}) {
+    return tripsRepo.getMaqam(tripName);
+  }
+
   Stream<Iterable<Trip>> getTripsByName({required String name}) {
     return tripsRepo.getTripsByName(name: name);
   }

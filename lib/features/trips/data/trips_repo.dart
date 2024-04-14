@@ -6,6 +6,8 @@ abstract class TripRepo {
 
   Stream<Iterable<Trip>> getTripsByName({required String name});
 
+  Stream<Iterable<Maqam>> getMaqam(String tripName);
+
   List<Trip> filterTrips(List<Trip> trips, String location);
 
   Future<List<LocationModel>> getLocations();

@@ -62,7 +62,7 @@ class SearchTrips extends StatelessWidget {
         );
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+        padding: const EdgeInsets.symmetric(horizontal: 5),
         child: TripWidget1(
             title: tripe.name,
             image: tripe.images[0],

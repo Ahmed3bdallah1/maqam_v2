@@ -2,27 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:maqam_v2/core/constants.dart';
 import 'package:maqam_v2/features/trips/models/trip_model.dart';
 
+import '../widgets/image_view widget.dart';
+
 
 class ImageDetailsScreen extends StatelessWidget {
-  final Trip trip;
+  final Maqam maqam;
 
-  const ImageDetailsScreen({super.key, required this.trip});
+  const ImageDetailsScreen({super.key, required this.maqam});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Text(
-              trip.name,
-              style: const TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,9 +32,8 @@ class ImageDetailsScreen extends StatelessWidget {
                       height: MediaQuery.of(context).size.height * 0.35,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
-                        child: Image.network(
-                          trip.images[0],
-                          fit: BoxFit.fitHeight,
+                        child: ImageViwer(
+                          image: maqam.images,
                         ),
                       ),
                     ),
@@ -81,36 +72,44 @@ class ImageDetailsScreen extends StatelessWidget {
               //     ),
               //   ),
               // ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Text(
+                  maqam.name,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Green,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
               const SizedBox(height: 15),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 25),
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.location_on,
-                        color: Colors.grey,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 4),
-                        child: Text(
-                          trip.location,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            color: Colors.grey,
-                          ),
+              Padding(
+                padding: const EdgeInsets.only(left: 25),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.location_on,
+                      color: Colors.grey,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 4),
+                      child: Text(
+                        maqam.trip,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.grey,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 22),
               SizedBox(
                 width: 343,
                 child: Text(
-                  trip.description,
+                  maqam.description,
                   maxLines: 10,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
@@ -123,29 +122,29 @@ class ImageDetailsScreen extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 12,
-          vertical: 20,
-        ),
-        child: ElevatedButton(
-          onPressed: () async {
-            // await TripRepository().addToCart(trip);
-          },
-          style: ElevatedButton.styleFrom(
-            foregroundColor: Colors.white,
-            backgroundColor: Green,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-          ),
-          child: const Text("Booking Now",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              )),
-        ),
-      ),
+      // bottomNavigationBar: Padding(
+      //   padding: const EdgeInsets.symmetric(
+      //     horizontal: 12,
+      //     vertical: 20,
+      //   ),
+      //   child: ElevatedButton(
+      //     onPressed: () async {
+      //       // await TripRepository().addToCart(trip);
+      //     },
+      //     style: ElevatedButton.styleFrom(
+      //       foregroundColor: Colors.white,
+      //       backgroundColor: Green,
+      //       shape: RoundedRectangleBorder(
+      //         borderRadius: BorderRadius.circular(20),
+      //       ),
+      //     ),
+      //     child: const Text("Booking Now",
+      //         style: TextStyle(
+      //           fontSize: 20,
+      //           fontWeight: FontWeight.bold,
+      //         )),
+      //   ),
+      // ),
     );
   }
 }

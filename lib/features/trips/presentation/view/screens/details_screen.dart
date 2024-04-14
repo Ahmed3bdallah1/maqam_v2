@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maqam_v2/core/constants.dart';
 import 'package:maqam_v2/features/cart/presentation/controllers/cart_cubit.dart';
 import 'package:maqam_v2/features/cart/presentation/controllers/cart_state.dart';
-import 'package:maqam_v2/features/cart/presentation/view/screen.dart';
 import 'package:maqam_v2/features/trips/models/trip_model.dart';
+import 'package:maqam_v2/features/trips/presentation/controllers/trips_cubit.dart';
+import 'package:maqam_v2/features/trips/presentation/controllers/trips_state.dart';
 import 'package:maqam_v2/features/trips/presentation/view/widgets/image_view%20widget.dart';
 import 'image_details_screen.dart';
 
@@ -16,9 +17,9 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
-          Column(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -53,88 +54,126 @@ class DetailsScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(
                     left: 20, top: 10, bottom: 10, right: 20),
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height * .1,
-                  child: ListView.separated(
-                    itemCount: 7,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) =>
-                                      ImageDetailsScreen(trip: trip)));
-                        },
-                        child: ClipOval(
-                          child: Container(
-                            width: MediaQuery.of(context).size.height * .1,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    fit: BoxFit.fitHeight,
-                                    image: NetworkImage(trip.images[0]))),
-                          ),
-                        ),
-                      );
-                    },
-                    separatorBuilder: (context, index) {
-                      return const SizedBox(width: 10);
-                    },
-                  ),
+                child: BlocConsumer<TripsCubit, TripsState>(
+                  listener: (context, state) {},
+                  builder: (context, state) {
+                    final cubit = TripsCubit.get(context);
+                    return SizedBox(
+                      height: MediaQuery.of(context).size.height * .1,
+                      child: StreamBuilder(
+                          stream: cubit.getMaqam(tripName: trip.name),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const Center(
+                                  child: CircularProgressIndicator());
+                            }
+                            if (snapshot.hasData &&
+                                snapshot.data != null &&
+                                snapshot.data!.isEmpty) {
+                              return const SizedBox();
+                            }
+
+                            if (snapshot.hasData && snapshot.data != null) {
+                              return ListView.separated(
+                                itemCount: snapshot.data!.length,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  final list = snapshot.data!.toList();
+                                  final item = list[index];
+                                  return InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (_) =>
+                                              ImageDetailsScreen(maqam: item),
+                                        ),
+                                      );
+                                    },
+                                    child: ClipOval(
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.height *
+                                                .1,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            fit: BoxFit.fill,
+                                            image: NetworkImage(
+                                              item.images[0],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                                separatorBuilder: (context, index) {
+                                  return const SizedBox(width: 10);
+                                },
+                              );
+                            }
+                            return Container(
+                              height: MediaQuery.of(context).size.height * .1,
+                            );
+                          }),
+                    );
+                  },
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Text(
                   trip.name,
-                  style: const TextStyle(
-                    fontSize: 30,
+                  style: TextStyle(
+                    fontSize: 25,
+                    color: Green,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
               const SizedBox(height: 15),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 25),
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.location_on,
-                        color: Colors.grey,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 4),
-                        child: Text(
-                          trip.location,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            color: Colors.grey,
-                          ),
+              Padding(
+                padding: const EdgeInsets.only(left: 25),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.location_on,
+                      color: Colors.grey,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 4),
+                      child: Text(
+                        trip.location,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.grey,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 22),
-              SizedBox(
-                width: 343,
-                child: Text(
-                  trip.description,
-                  maxLines: 10,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: SizedBox(
+                  child: Flexible(
+                    child: Text(
+                      trip.description,
+                      maxLines: 10,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey,
+                      ),
+                    ),
                   ),
                 ),
               ),
             ],
           ),
-        ],
+        ),
       ),
       bottomNavigationBar: BlocConsumer<CartCubit, CartState>(
         listener: (context, state) {},
@@ -162,11 +201,13 @@ class DetailsScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    child: const Text("Already in cart",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        )),
+                    child: const Text(
+                      "Already in cart",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 )
               : Padding(
@@ -177,6 +218,7 @@ class DetailsScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () async {
                       CartCubit.get(context).addToCart(trip);
+                      CartCubit.get(context).getItems();
                       // await TripRepository().addToCart(trip);
                     },
                     style: ElevatedButton.styleFrom(
@@ -186,11 +228,13 @@ class DetailsScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    child: const Text("Book Now",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        )),
+                    child: const Text(
+                      "Book Now",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 );
         },

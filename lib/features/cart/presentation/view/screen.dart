@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:maqam_v2/core/widgets/custom_appbar.dart';
 import 'package:maqam_v2/features/cart/presentation/controllers/cart_cubit.dart';
 import 'package:maqam_v2/features/cart/presentation/controllers/cart_state.dart';
