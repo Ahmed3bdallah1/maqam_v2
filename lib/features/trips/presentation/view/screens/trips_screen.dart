@@ -89,7 +89,7 @@ class TripsScreen extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        const SeeAllLocationScreen(),
+                                        SeeAllLocationScreen(trips: trips),
                                   ),
                                 );
                               },

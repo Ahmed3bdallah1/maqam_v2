@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 class LocationWidget extends StatelessWidget {
   final String location;
   final String image;
+  final Color? color;
   const LocationWidget({
     super.key,
     required this.location,
-    required this.image,
+    required this.image, this.color,
   });
 
   @override
@@ -14,7 +15,7 @@ class LocationWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(40),
-        color: Colors.white,
+        color:color?? Colors.white,
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(
