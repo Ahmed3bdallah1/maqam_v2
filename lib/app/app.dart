@@ -1,3 +1,4 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,11 +11,12 @@ import 'package:maqam_v2/features/search/presentation/controllers/search_cubit.d
 import 'package:maqam_v2/features/trips/presentation/controllers/trips_cubit.dart';
 import 'package:maqam_v2/features/trips/presentation/view/screens/drawer_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:page_transition/page_transition.dart';
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -27,20 +29,29 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: AppRoutes.routes,
-        home: StreamBuilder(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            }
+        title: "Maqam",
+        home: AnimatedSplashScreen(
+          splash: Image.asset('assets/images/logo.png'),
+          // Replace with your animated asset photo
+          nextScreen: StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              }
 
-            if (snapshot.hasData) {
-              print(snapshot.data!.uid);
-              return const DrawerPage();
-            }
+              if (snapshot.hasData) {
+                print(snapshot.data!.uid);
+                return const DrawerPage();
+              }
 
-            return const LoginScreen();
-          },
+              return const LoginScreen();
+            },
+          ),
+          // Replace with your desired next screen
+          splashTransition: SplashTransition.fadeTransition,
+          pageTransitionType: PageTransitionType.fade,
+          duration: 3000, // Duration in milliseconds for the splash animation
         ),
       ),
     );
