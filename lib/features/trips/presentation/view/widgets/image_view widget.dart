@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 
 class ImageViwer extends StatelessWidget {
@@ -23,9 +24,9 @@ class ImageViwer extends StatelessWidget {
                   .width,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
-                child: Image.network(
-                  image[index],
-                  fit: BoxFit.cover,
+                child: FancyShimmerImage(
+                  imageUrl: image[index],
+                  errorWidget: Image.network('assets/images/error.png'),
                 ),
               ),
             ),

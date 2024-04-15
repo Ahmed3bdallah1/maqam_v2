@@ -1,3 +1,4 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:maqam_v2/core/constants.dart';
 import 'package:maqam_v2/features/trips/presentation/view/screens/details_screen.dart';
@@ -7,16 +8,16 @@ import '../../../../trips/models/trip_model.dart';
 class CartCard extends StatelessWidget {
   const CartCard({
     super.key,
-    required this.cart,
+    required this.trip,
   });
 
-  final Trip cart;
+  final Trip trip;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (_)=>DetailsScreen(trip: cart)));
+        Navigator.push(context, MaterialPageRoute(builder: (_)=>DetailsScreen(trip: trip)));
       },
       child: Row(
         children: [
@@ -29,7 +30,11 @@ class CartCard extends StatelessWidget {
                   color: Colors.blueGrey,
                   borderRadius: BorderRadius.circular(15),
                 ),
-                child: Image.network(cart.images[0]),
+                child: FancyShimmerImage(
+                  imageUrl: trip.images[0],
+                  boxFit: BoxFit.fitWidth,
+                  errorWidget: Image.asset('assets/images/error.png'),
+                ),
               ),
             ),
           ),
@@ -38,7 +43,7 @@ class CartCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                cart.name,
+                trip.name,
                 style:  TextStyle(color: Green, fontSize: 16,),
                 maxLines: 2,
               ),

@@ -1,3 +1,4 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maqam_v2/core/constants.dart';
@@ -65,8 +66,7 @@ class DetailsScreen extends StatelessWidget {
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return const Center(
-                                  child: CircularProgressIndicator());
+                              return const SizedBox();
                             }
                             if (snapshot.hasData &&
                                 snapshot.data != null &&
@@ -91,18 +91,14 @@ class DetailsScreen extends StatelessWidget {
                                         ),
                                       );
                                     },
-                                    child: ClipOval(
-                                      child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.height *
-                                                .1,
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                            fit: BoxFit.fill,
-                                            image: NetworkImage(
-                                              item.images[0],
-                                            ),
-                                          ),
+                                    child: SizedBox(
+                                      width:
+                                      MediaQuery.of(context).size.height *
+                                          .1,
+                                      child: ClipOval(
+                                        child: FancyShimmerImage(
+                                          imageUrl: item.images[0],
+                                          errorWidget: Image.asset('assets/images/error.png'),
                                         ),
                                       ),
                                     ),

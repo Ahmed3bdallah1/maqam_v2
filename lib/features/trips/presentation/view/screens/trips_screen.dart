@@ -138,7 +138,7 @@ class TripsScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Trips(tripes: trips),
+                      Trips(trips: trips),
                       const SizedBox(
                         height: 20,
                       ),
@@ -170,7 +170,7 @@ class TripsScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Trips(tripes: trips),
+                      Trips(trips: trips),
                     ]))
               ]);
             } else if (snapshot.connectionState == ConnectionState.waiting) {

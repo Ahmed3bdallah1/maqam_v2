@@ -93,7 +93,7 @@ class _CartScreenState extends State<CartScreen> {
                               ],
                             ),
                           ),
-                          child: CartCard(cart: list[index]),
+                          child: CartCard(trip: list[index]),
                         ),
                       );
                     },

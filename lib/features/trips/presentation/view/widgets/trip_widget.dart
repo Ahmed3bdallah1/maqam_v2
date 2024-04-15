@@ -1,3 +1,4 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 
 class TripWidget1 extends StatelessWidget {
@@ -40,11 +41,12 @@ class TripWidget1 extends StatelessWidget {
                     color: Colors.white),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: Image.network(
-                    image,
+                  child: FancyShimmerImage(
+                    imageUrl: image,
+                    errorWidget: Image.asset('assets/images/error.png'),
                     height: 120,
                     width: 161,
-                    fit: BoxFit.cover,
+                    boxFit: BoxFit.cover,
                   ),
                 ),
               ),
@@ -127,12 +129,13 @@ class TripWidget2 extends StatelessWidget {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: Image.network(
-                    image,
+                  child: FancyShimmerImage(
+                    imageUrl: image,
+                    errorWidget: Image.asset('assets/images/error.png'),
                     height: MediaQuery.of(context).size.height * 0.16,
                     width: MediaQuery.of(context).size.width *
                         0.4, // Adjust the percentage as needed
-                    fit: BoxFit.cover,
+                    boxFit: BoxFit.cover,
                   ),
                 ),
               ),

@@ -4,11 +4,11 @@ import 'package:maqam_v2/features/trips/presentation/view/screens/details_screen
 import 'package:maqam_v2/features/trips/presentation/view/widgets/trip_widget.dart';
 
 class Trips extends StatelessWidget {
-  final List<Trip> tripes;
+  final List<Trip> trips;
 
   const Trips({
     super.key,
-    required this.tripes,
+    required this.trips,
   });
 
   @override
@@ -17,23 +17,23 @@ class Trips extends StatelessWidget {
       height: 210, // Set a specific height here
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: tripes.length,
+        itemCount: trips.length,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DetailsScreen(trip: tripes[index]),
+                  builder: (context) => DetailsScreen(trip: trips[index]),
                 ),
               );
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
               child: TripWidget1(
-                  title: tripes[index].name,
-                  image: tripes[index].images[0],
-                  location: tripes[index].location),
+                  title: trips[index].name,
+                  image: trips[index].images[0],
+                  location: trips[index].location),
             ),
           );
         },
