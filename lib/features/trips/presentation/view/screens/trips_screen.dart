@@ -6,6 +6,7 @@ import 'package:maqam_v2/features/trips/presentation/view/screens/see_all_locati
 import 'package:maqam_v2/features/trips/presentation/view/widgets/head_home_title.dart';
 import 'package:maqam_v2/features/trips/presentation/view/widgets/location_list_view.dart';
 import 'package:maqam_v2/features/trips/presentation/view/widgets/trips.dart';
+import 'package:shimmer/shimmer.dart';
 import '../../../../search/presentation/view/search_screen.dart';
 import 'all_trips_screeen.dart';
 
@@ -174,8 +175,123 @@ class TripsScreen extends StatelessWidget {
                     ]))
               ]);
             } else if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
+              return ListView(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 20,
+                    ),
+                    child: Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) =>
+                                        const SearchScreen(searchBar: true)));
+                          },
+                          child: Container(
+                            height: 50,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 10,
+                              ),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.search,
+                                    color: Colors.grey,
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    'Search',
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+                        const Padding(
+                          padding: EdgeInsets.all(4.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              HeadHomeTitle(title: "Locations"),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 40,
+                          child: Shimmer.fromColors(
+                            baseColor: Colors.grey[300]!,
+                            highlightColor: Colors.grey[100]!,
+                            child: Container(),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const HeadHomeTitle(title: 'Popular Trips'),
+                              SizedBox(
+                                height: 40,
+                                child: Shimmer.fromColors(
+                                    baseColor: Colors.grey[300]!,
+                                    highlightColor: Colors.grey[100]!,
+                                    child: const Text("See all")),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 200,
+                          child: Shimmer.fromColors(
+                            baseColor: Colors.grey[300]!,
+                            highlightColor: Colors.grey[100]!,
+                            child: Container(),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.all(5.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              HeadHomeTitle(title: 'Recommended Trips'),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 200,
+                          child: Shimmer.fromColors(
+                            baseColor: Colors.grey[300]!,
+                            highlightColor: Colors.grey[100]!,
+                            child: Container(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               );
             } else {
               return Center(

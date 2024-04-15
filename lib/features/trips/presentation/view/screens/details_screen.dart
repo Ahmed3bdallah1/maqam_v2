@@ -215,7 +215,6 @@ class DetailsScreen extends StatelessWidget {
                     onPressed: () async {
                       CartCubit.get(context).addToCart(trip);
                       CartCubit.get(context).getItems();
-                      // await TripRepository().addToCart(trip);
                     },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,

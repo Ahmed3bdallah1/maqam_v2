@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:maqam_v2/features/trips/models/location.dart';
 import 'package:maqam_v2/features/trips/models/trip_model.dart';
 import 'package:maqam_v2/features/trips/presentation/controllers/trips_cubit.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../screens/all_trips_screeen.dart';
 import 'location_widget.dart';
@@ -50,9 +51,27 @@ class LocationListView extends StatelessWidget {
               );
             },
           );
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
+          return ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 3,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+                child: Shimmer.fromColors(
+                  baseColor: Colors.grey[300]!,
+                  highlightColor: Colors.grey[100]!,
+                  child: Container(),
+                ),
+              );
+            },
+          );
         } else {
-          return const Center(
-            child: CircularProgressIndicator(),
+          return Center(
+            child: Image.asset(
+              "assets/images/error.png",
+              height: 30,
+            ),
           );
         }
       },

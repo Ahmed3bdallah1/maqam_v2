@@ -32,7 +32,6 @@ class MyApp extends StatelessWidget {
         title: "Maqam",
         home: AnimatedSplashScreen(
           splash: Image.asset('assets/images/logo.png'),
-          // Replace with your animated asset photo
           nextScreen: StreamBuilder(
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (context, snapshot) {
@@ -48,10 +47,9 @@ class MyApp extends StatelessWidget {
               return const LoginScreen();
             },
           ),
-          // Replace with your desired next screen
           splashTransition: SplashTransition.fadeTransition,
           pageTransitionType: PageTransitionType.fade,
-          duration: 3000, // Duration in milliseconds for the splash animation
+          duration: 3000,
         ),
       ),
     );
