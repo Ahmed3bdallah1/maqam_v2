@@ -59,9 +59,16 @@ class LocationListView extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
                 child: Shimmer.fromColors(
-                  baseColor: Colors.grey[300]!,
-                  highlightColor: Colors.grey[100]!,
-                  child: Container(),
+                  baseColor: Colors.white,
+                  highlightColor: Colors.green.shade300,
+                  child: Container(
+                    height: 80,
+                    width: 150,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade300,
+                      borderRadius: BorderRadius.circular(12)
+                    ),
+                  ),
                 ),
               );
             },

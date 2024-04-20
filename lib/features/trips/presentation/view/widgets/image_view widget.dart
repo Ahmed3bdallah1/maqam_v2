@@ -26,7 +26,7 @@ class ImageViwer extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 child: FancyShimmerImage(
                   imageUrl: image[index],
-                  errorWidget: Image.network('assets/images/error.png'),
+                  errorWidget: Image.asset('assets/images/error.png'),
                 ),
               ),
             ),
