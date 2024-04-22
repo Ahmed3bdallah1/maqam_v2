@@ -4,11 +4,13 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maqam_v2/core/widgets/snakbar.dart';
-import 'package:maqam_v2/features/cart/models/reservation_model.dart';
+import 'package:maqam_v2/features/reservation/models/reservation_model.dart';
 import 'package:maqam_v2/features/cart/presentation/controllers/cart_cubit.dart';
 import 'package:maqam_v2/features/cart/presentation/controllers/cart_state.dart';
+import 'package:maqam_v2/features/reservation/presentation/controllers/reservation_cubit.dart';
 import 'package:maqam_v2/features/trips/models/trip_model.dart';
 import '../../../../core/constants.dart';
+import '../../../trips/presentation/controllers/trips_cubit.dart';
 
 class ReservationScreen extends StatelessWidget {
   final List<Trip> cartList;
@@ -49,7 +51,8 @@ class ReservationForm extends StatefulWidget {
   final List<String> cartList;
   final List<Trip> trips;
 
-  const ReservationForm({super.key, required this.cartList, required this.trips});
+  const ReservationForm(
+      {super.key, required this.cartList, required this.trips});
 
   @override
   _ReservationFormState createState() => _ReservationFormState();
@@ -275,10 +278,12 @@ class _ReservationFormState extends State<ReservationForm> {
             },
             builder: (context, state) {
               final cubit = CartCubit.get(context);
+              final reservationCubit = ReservationCubit.get(context);
               return ElevatedButton(
                 onPressed: () async {
+                  print("object");
                   if (_formKey.currentState!.validate()) {
-                    // Process reservation
+                    print("object");
 
                     final reservation = ReservationModel(
                       name: name,
@@ -288,22 +293,28 @@ class _ReservationFormState extends State<ReservationForm> {
                       numberOfBags: numberOfBags,
                       fileUrl: downloadUrl,
                       email: email,
+                      reserved: false,
                       uid: FirebaseAuth.instance.currentUser!.uid,
                       numberOfGuests: numberOfGuests,
                       cartItems: widget.cartList,
                       comments: comments,
                     );
 
-                    final res = await cubit.addReservation(reservation);
+                    final res =
+                        await reservationCubit.addReservation(reservation);
 
                     if (res) {
-                      for(var i in widget.trips){
+                      for (var i in widget.trips) {
                         cubit.remove(i);
                         cubit.cartItems.clear();
                       }
                       showSnakbar(
-                          context, "reservation added successfully", Green);
+                          context,
+                          "reservation added successfully, we will contact you soon",
+                          Green,
+                          const Duration(seconds: 10));
                       Navigator.pop(context);
+                      TripsCubit.get(context).currentIndex = 0;
                     }
                   }
                 },

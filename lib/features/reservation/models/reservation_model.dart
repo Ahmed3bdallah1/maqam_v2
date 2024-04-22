@@ -6,6 +6,7 @@ class ReservationModel {
   final int? numberOfBags;
   final String uid;
   final bool peakOfAirport;
+  final bool reserved;
   final DateTime? arrivalTime;
   final String? comments;
   final List<String> cartItems;
@@ -20,6 +21,7 @@ class ReservationModel {
     this.comments,
     this.fileUrl,
     required this.uid,
+    required this.reserved,
     this.numberOfBags,
     required this.numberOfGuests,
     required this.cartItems,
@@ -34,6 +36,7 @@ class ReservationModel {
       "number_of_bags": numberOfBags,
       "number_of_guests": numberOfGuests,
       "peak_from_airport": peakOfAirport,
+      "reserved": reserved,
       "arrival_time": uid,
       "comments": comments,
       "cart_items": cartItems,
@@ -46,6 +49,7 @@ class ReservationModel {
       name: map["name"] ?? "",
       phoneNumber: map["phone_number"] ?? "",
       peakOfAirport: map["peak_from_airport"] ?? false,
+      reserved: map["reserved"] ?? false,
       email: map["email"] ?? '',
       arrivalTime: DateTime.fromMillisecondsSinceEpoch(
         map["arrival_time"] ?? 0,
