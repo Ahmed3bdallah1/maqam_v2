@@ -264,7 +264,7 @@ class TripsScreen extends StatelessWidget {
                           height: 200,
                           child: Shimmer.fromColors(
                             baseColor: Colors.grey[300]!,
-                            highlightColor: Colors.grey[100]!,
+                            highlightColor: Colors.green.shade300,
                             child: Container(),
                           ),
                         ),

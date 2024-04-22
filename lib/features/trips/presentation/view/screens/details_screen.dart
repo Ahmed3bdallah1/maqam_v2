@@ -93,12 +93,17 @@ class DetailsScreen extends StatelessWidget {
                                     },
                                     child: SizedBox(
                                       width:
-                                      MediaQuery.of(context).size.height *
-                                          .1,
+                                          MediaQuery.of(context).size.height *
+                                              .1,
                                       child: ClipOval(
                                         child: FancyShimmerImage(
+                                          shimmerHighlightColor:
+                                              Green.withOpacity(.6),
+                                          shimmerBaseColor:
+                                              Green.withOpacity(.2),
                                           imageUrl: item.images[0],
-                                          errorWidget: Image.asset('assets/images/error.png'),
+                                          errorWidget: Image.asset(
+                                              'assets/images/error.png'),
                                         ),
                                       ),
                                     ),

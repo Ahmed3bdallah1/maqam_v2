@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:maqam_v2/config/routes.dart';
 import 'package:maqam_v2/core/widgets/custom_appbar.dart';
 import 'package:maqam_v2/features/cart/presentation/controllers/cart_cubit.dart';
 import 'package:maqam_v2/features/cart/presentation/controllers/cart_state.dart';
-import 'package:maqam_v2/features/cart/presentation/view/ReservationScreen.dart';
+import 'package:maqam_v2/features/reservation/presentation/screens/ReservationScreen.dart';
 import 'package:maqam_v2/features/cart/presentation/view/widgets/cart_item.dart';
+import 'package:maqam_v2/features/reservation/presentation/screens/all_reservations_screen.dart';
 
 import '../../../../core/constants.dart';
 
@@ -29,8 +31,25 @@ class _CartScreenState extends State<CartScreen> {
       builder: (context, state) {
         final list = CartCubit.get(context).cartItems;
         return Scaffold(
-          appBar:
-              CustomAppBar(title: "Your Cart", isRoot: widget.isRoot ?? true),
+          appBar: CustomAppBar(
+            title: "Your Cart",
+            isRoot: widget.isRoot ?? true,
+            widget: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const AllReservationScreen()));
+                },
+                child: Icon(
+                  CupertinoIcons.doc_checkmark_fill,
+                  color: Green,
+                ),
+              ),
+            ),
+          ),
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: list.isEmpty

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maqam_v2/features/cart/data/cart_repo.dart';
-import 'package:maqam_v2/features/cart/models/reservation_model.dart';
 import 'package:maqam_v2/features/cart/presentation/controllers/cart_state.dart';
 import 'package:maqam_v2/features/trips/models/trip_model.dart';
 
@@ -40,32 +39,6 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  Future<bool> addReservation(ReservationModel reservationModel) async {
-    print("object");
-    try {
-      emit(AddLoading());
-      final bool = await cartRepo.addReservation(reservationModel);
-      if (bool == true) {
-        emit(AddSuccess());
-        const SnackBar(
-          content: Text('reservation submitted successfully'),
-          backgroundColor: Colors.green,
-        );
-        print("success");
-        return true;
-      } else {
-        const SnackBar(
-          content: Text('unable to add to reservation'),
-          backgroundColor: Colors.red,
-        );
-        emit(AddError(error: "unable to add reservation"));
-        return false;
-      }
-    } catch (e) {
-      emit(AddError(error: "unable to add to reservation"));
-      return false;
-    }
-  }
 
   Future<bool> remove(Trip trip) async {
     try {

@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:maqam_v2/features/cart/data/cart_repo.dart';
-import 'package:maqam_v2/features/cart/models/reservation_model.dart';
+import 'package:maqam_v2/features/reservation/models/reservation_model.dart';
 import 'package:maqam_v2/features/trips/models/trip_model.dart';
+import 'package:uuid/uuid.dart';
 
 class CartRepoImp extends CartRepo {
   final FirebaseFirestore firestore;
@@ -19,20 +20,6 @@ class CartRepoImp extends CartRepo {
           .collection("cart")
           .doc("${trip.name}&${trip.location}")
           .set(trip.toMap());
-      return true;
-    } catch (e) {
-      print(e);
-      return false;
-    }
-  }
-
-  @override
-  Future<bool> addReservation(reservationModel) async {
-    try {
-      await firestore
-          .collection("reservation")
-          .doc(FirebaseAuth.instance.currentUser!.uid)
-          .set(reservationModel.toMap());
       return true;
     } catch (e) {
       print(e);
@@ -78,7 +65,8 @@ class CartRepoImp extends CartRepo {
     try {
       await firestore
           .collection("user")
-          .doc(auth.currentUser!.uid).collection("cart");
+          .doc(auth.currentUser!.uid)
+          .collection("cart");
       return true;
     } catch (e) {
       print(e);

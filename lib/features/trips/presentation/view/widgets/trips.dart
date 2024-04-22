@@ -14,7 +14,7 @@ class Trips extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 210, // Set a specific height here
+      height: 210,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: trips.length,

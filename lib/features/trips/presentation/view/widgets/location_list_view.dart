@@ -65,7 +65,7 @@ class LocationListView extends StatelessWidget {
                     height: 80,
                     width: 150,
                     decoration: BoxDecoration(
-                      color: Colors.grey.shade300,
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(12)
                     ),
                   ),
@@ -133,8 +133,56 @@ class LocationGridView extends StatelessWidget {
               );
             },
           );
-        } else {
-          return const SizedBox();
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
+          return GridView.builder(
+            itemCount: 10,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 3,
+            ),
+            itemBuilder: (context, index) {
+              return Shimmer.fromColors(
+                  baseColor: Colors.white,
+                  highlightColor: Colors.green.shade300,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 15,
+                      vertical: 5,
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 40,
+                          width: 40,
+                          child: Image.asset(
+                            "assets/images/img1.png",
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.all(4.0),
+                          child: Text(
+                            "Location",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 13,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        } else{
+          return SizedBox();
         }
       },
     );
