@@ -7,10 +7,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     required this.title,
     required this.isRoot,
+    this.widget,
   });
 
   final String title;
   final bool isRoot;
+  final Widget? widget;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         style:
             TextStyle(fontSize: 27, color: Green, fontWeight: FontWeight.bold),
       ),
-      actions: const [],
+      actions: [widget ?? const SizedBox()],
     );
   }
 

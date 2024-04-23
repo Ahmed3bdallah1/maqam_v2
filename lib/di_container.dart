@@ -8,6 +8,9 @@ import 'package:maqam_v2/features/auth/presentation/controllers/auth_cubit.dart'
 import 'package:maqam_v2/features/cart/data/cart_repo.dart';
 import 'package:maqam_v2/features/cart/data/cart_repo_imp.dart';
 import 'package:maqam_v2/features/cart/presentation/controllers/cart_cubit.dart';
+import 'package:maqam_v2/features/reservation/data/reservation_repo.dart';
+import 'package:maqam_v2/features/reservation/data/reservation_repo_imp.dart';
+import 'package:maqam_v2/features/reservation/presentation/controllers/reservation_cubit.dart';
 import 'package:maqam_v2/features/search/data/search_repo.dart';
 import 'package:maqam_v2/features/search/data/search_repo_imp.dart';
 import 'package:maqam_v2/features/search/presentation/controllers/search_cubit.dart';
@@ -32,6 +35,8 @@ Future<void> init() async {
   // register repos of the app
   sl.registerLazySingleton<AuthRepo>(
       () => AuthRepoImp(firebaseAuth: sl(), firestore: sl()));
+  sl.registerLazySingleton<ReservationRepo>(
+      () => ReservationRepoImp(auth: sl(), firestore: sl()));
   sl.registerLazySingleton<TripRepo>(() => TripRepoImp(firestore: sl()));
   sl.registerLazySingleton<CartRepo>(
       () => CartRepoImp(firestore: sl(), auth: sl()));
@@ -41,6 +46,7 @@ Future<void> init() async {
 
   // register controllers of the app
   sl.registerFactory(() => TripsCubit(sl()));
+  sl.registerFactory(() => ReservationCubit(sl()));
   sl.registerFactory(() => AuthCubit(sl()));
   sl.registerFactory(() => SearchCubit(sl()));
   sl.registerFactory(() => CartCubit(sl()));

@@ -7,6 +7,7 @@ import 'package:maqam_v2/di_container.dart' as di;
 import 'package:maqam_v2/features/auth/presentation/controllers/auth_cubit.dart';
 import 'package:maqam_v2/features/auth/presentation/view/login_screen.dart';
 import 'package:maqam_v2/features/cart/presentation/controllers/cart_cubit.dart';
+import 'package:maqam_v2/features/reservation/presentation/controllers/reservation_cubit.dart';
 import 'package:maqam_v2/features/search/presentation/controllers/search_cubit.dart';
 import 'package:maqam_v2/features/trips/presentation/controllers/trips_cubit.dart';
 import 'package:maqam_v2/features/trips/presentation/view/screens/drawer_screen.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => di.sl<CartCubit>()),
         BlocProvider(create: (context) => di.sl<SearchCubit>()),
         BlocProvider(create: (context) => di.sl<TripsCubit>()),
+        BlocProvider(create: (context) => di.sl<ReservationCubit>()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

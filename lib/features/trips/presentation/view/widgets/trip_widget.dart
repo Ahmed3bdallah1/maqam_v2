@@ -1,6 +1,8 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/constants.dart';
+
 class TripWidget1 extends StatelessWidget {
   final String title;
   final String location;
@@ -42,6 +44,10 @@ class TripWidget1 extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: FancyShimmerImage(
+                    shimmerHighlightColor:
+                    Green.withOpacity(.6),
+                    shimmerBaseColor:
+                    Green.withOpacity(.2),
                     imageUrl: image,
                     errorWidget: Image.asset('assets/images/error.png'),
                     height: 120,
