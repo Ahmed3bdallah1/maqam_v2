@@ -11,3 +11,11 @@ showSnakbar(
     ),
   );
 }
+
+showConnectionSnakbar(BuildContext context, bool isNotConnected) {
+  return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      backgroundColor: isNotConnected ? Colors.red : Colors.green,
+      duration: Duration(seconds: isNotConnected ? 6000 : 1),
+      content: Text(isNotConnected ? "no connection" : "connected",
+          textAlign: TextAlign.center)));
+}

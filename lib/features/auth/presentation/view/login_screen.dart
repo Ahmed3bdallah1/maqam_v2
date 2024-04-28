@@ -6,7 +6,7 @@ import 'package:maqam_v2/core/constants.dart';
 import 'package:maqam_v2/features/auth/presentation/controllers/auth_cubit.dart';
 import 'package:maqam_v2/features/auth/presentation/controllers/auth_state.dart';
 import 'package:maqam_v2/features/auth/validation/validation.dart';
-import 'package:maqam_v2/features/trips/presentation/view/screens/drawer_screen.dart';
+import '../../../drawer/presentation/screens/drawer_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

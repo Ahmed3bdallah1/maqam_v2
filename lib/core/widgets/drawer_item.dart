@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:maqam_v2/features/trips/presentation/controllers/trips_state.dart';
-import '../../features/trips/presentation/controllers/trips_cubit.dart';
+import 'package:maqam_v2/features/drawer/presentation/controller/drawer_cubit.dart';
+import 'package:maqam_v2/features/drawer/presentation/controller/drawer_state.dart';
 import '../constants.dart';
 
 class DrawerItem extends StatelessWidget {
@@ -20,10 +20,10 @@ class DrawerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<TripsCubit, TripsState>(
+    return BlocConsumer<DrawerCubit, DrawerPageState>(
       listener: (context, state) {},
       builder: (context, state) {
-        final selectedIndex = TripsCubit.get(context).currentIndex;
+        final selectedIndex = DrawerCubit.get(context).currentIndex;
         bool isSelectedIndex() {
           return index == selectedIndex;
         }
@@ -43,7 +43,7 @@ class DrawerItem extends StatelessWidget {
           ),
           onTap: onTap ??
               () {
-                TripsCubit.get(context).changeTab(index);
+                DrawerCubit.get(context).changeTab(index);
 
                 zoomDrawerController.close?.call();
               },

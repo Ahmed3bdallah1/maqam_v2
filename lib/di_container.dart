@@ -18,6 +18,8 @@ import 'package:maqam_v2/features/trips/data/trips_repo.dart';
 import 'package:maqam_v2/features/trips/data/trips_repo_imp.dart';
 import 'package:maqam_v2/features/trips/presentation/controllers/trips_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'config/network.dart';
+import 'features/drawer/presentation/controller/drawer_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -31,6 +33,8 @@ Future<void> init() async {
   sl.registerLazySingleton(() => auth);
   sl.registerLazySingleton(() => firestore);
   sl.registerLazySingleton(() => Connectivity());
+
+  sl.registerLazySingleton(() => NetworkInfo(sl()));
 
   // register repos of the app
   sl.registerLazySingleton<AuthRepo>(
@@ -46,6 +50,7 @@ Future<void> init() async {
 
   // register controllers of the app
   sl.registerFactory(() => TripsCubit(sl()));
+  sl.registerFactory(() => DrawerCubit());
   sl.registerFactory(() => ReservationCubit(sl()));
   sl.registerFactory(() => AuthCubit(sl()));
   sl.registerFactory(() => SearchCubit(sl()));
