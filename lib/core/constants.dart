@@ -21,18 +21,3 @@ var yellow = HexColor('#E1D800');
 var gray = HexColor('#F7F7F7');
 final ZoomDrawerController zoomDrawerController = ZoomDrawerController();
 
-Future<File?> pickImage() async {
-  File? image;
-  final picker = ImagePicker();
-  final file = await picker.pickImage(
-    source: ImageSource.gallery,
-    maxHeight: 720,
-    maxWidth: 720,
-  );
-
-  if (file != null) {
-    image = File(file.path);
-  }
-
-  return image;
-}
