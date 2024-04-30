@@ -8,6 +8,7 @@ import 'package:maqam_v2/features/reservation/models/reservation_model.dart';
 import 'package:maqam_v2/features/cart/presentation/controllers/cart_cubit.dart';
 import 'package:maqam_v2/features/cart/presentation/controllers/cart_state.dart';
 import 'package:maqam_v2/features/reservation/presentation/controllers/reservation_cubit.dart';
+import 'package:maqam_v2/features/reservation/presentation/controllers/reservation_state.dart';
 import 'package:maqam_v2/features/trips/models/trip_model.dart';
 import '../../../../core/constants.dart';
 import '../../../trips/presentation/controllers/trips_cubit.dart';
@@ -60,7 +61,6 @@ class ReservationForm extends StatefulWidget {
 
 class _ReservationFormState extends State<ReservationForm> {
   final _formKey = GlobalKey<FormState>();
-  File? file;
   String? downloadUrl;
   String name = '';
   String email = '';
@@ -73,263 +73,272 @@ class _ReservationFormState extends State<ReservationForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: ListView(
-        children: <Widget>[
-          TextFormField(
-            decoration: const InputDecoration(
-              labelText: 'Name',
-              prefixIcon: Icon(Icons.person, color: Colors.green),
-              border: OutlineInputBorder(),
-            ),
-            style: const TextStyle(color: Colors.green),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your name';
-              }
-              return null;
-            },
-            onChanged: (value) {
-              setState(() {
-                name = value;
-              });
-            },
-          ),
-          const SizedBox(height: 10),
-          TextFormField(
-            decoration: const InputDecoration(
-              labelText: 'Email',
-              prefixIcon: Icon(Icons.email, color: Colors.green),
-              border: OutlineInputBorder(),
-            ),
-            style: const TextStyle(color: Colors.green),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your email';
-              }
-              return null;
-            },
-            onChanged: (value) {
-              setState(() {
-                email = value;
-              });
-            },
-          ),
-          const SizedBox(height: 10),
-          TextFormField(
-            decoration: const InputDecoration(
-              labelText: 'Phone Number',
-              prefixIcon: Icon(Icons.phone, color: Colors.green),
-              border: OutlineInputBorder(),
-            ),
-            style: const TextStyle(color: Colors.green),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your phone number';
-              }
-              return null;
-            },
-            onChanged: (value) {
-              setState(() {
-                phoneNumber = value;
-              });
-            },
-          ),
-          const SizedBox(height: 10),
-          ListTile(
-            title: const Text(
-              'Number of Guests',
-              style: TextStyle(color: Colors.green),
-            ),
-            trailing: DropdownButton<int>(
-              value: numberOfGuests,
-              onChanged: (newValue) {
-                setState(() {
-                  numberOfGuests = newValue!;
-                });
-              },
-              items: List.generate(
-                10,
-                (index) => DropdownMenuItem<int>(
-                  value: index + 1,
-                  child: Text('${index + 1}'),
+    return BlocConsumer<ReservationCubit, ReservationState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        final cubit = ReservationCubit.get(context);
+        return Form(
+          key: _formKey,
+          child: ListView(
+            children: <Widget>[
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Name',
+                  prefixIcon: Icon(Icons.person, color: Colors.green),
+                  border: OutlineInputBorder(),
+                ),
+                style: const TextStyle(color: Colors.green),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your name';
+                  }
+                  return null;
+                },
+                onChanged: (value) {
+                  setState(() {
+                    name = value;
+                  });
+                },
+              ),
+              const SizedBox(height: 10),
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                  prefixIcon: Icon(Icons.email, color: Colors.green),
+                  border: OutlineInputBorder(),
+                ),
+                style: const TextStyle(color: Colors.green),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
+                  }
+                  return null;
+                },
+                onChanged: (value) {
+                  setState(() {
+                    email = value;
+                  });
+                },
+              ),
+              const SizedBox(height: 10),
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Phone Number',
+                  prefixIcon: Icon(Icons.phone, color: Colors.green),
+                  border: OutlineInputBorder(),
+                ),
+                style: const TextStyle(color: Colors.green),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your phone number';
+                  }
+                  return null;
+                },
+                onChanged: (value) {
+                  setState(() {
+                    phoneNumber = value;
+                  });
+                },
+              ),
+              const SizedBox(height: 10),
+              ListTile(
+                title: const Text(
+                  'Number of Guests',
+                  style: TextStyle(color: Colors.green),
+                ),
+                trailing: DropdownButton<int>(
+                  value: numberOfGuests,
+                  onChanged: (newValue) {
+                    setState(() {
+                      numberOfGuests = newValue!;
+                    });
+                  },
+                  items: List.generate(
+                    10,
+                    (index) => DropdownMenuItem<int>(
+                      value: index + 1,
+                      child: Text('${index + 1}'),
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-          const SizedBox(height: 10),
-          SwitchListTile(
-            title: const Text(
-              'Peak from Airport',
-              style: TextStyle(color: Colors.green),
-            ),
-            value: peakFromAirport,
-            onChanged: (newValue) {
-              setState(() {
-                peakFromAirport = newValue;
-              });
-            },
-          ),
-          if (peakFromAirport) ...[
-            const SizedBox(height: 10),
-            ListTile(
-              title: const Text(
-                'Number of Bags',
-                style: TextStyle(color: Colors.green),
-              ),
-              trailing: DropdownButton<int>(
-                value: numberOfBags,
+              const SizedBox(height: 10),
+              SwitchListTile(
+                title: const Text(
+                  'Peak from Airport',
+                  style: TextStyle(color: Colors.green),
+                ),
+                value: peakFromAirport,
                 onChanged: (newValue) {
                   setState(() {
-                    numberOfBags = newValue!;
+                    peakFromAirport = newValue;
                   });
                 },
-                items: List.generate(
-                  5,
-                  (index) => DropdownMenuItem<int>(
-                    value: index,
-                    child: Text('$index'),
+              ),
+              if (peakFromAirport) ...[
+                const SizedBox(height: 10),
+                ListTile(
+                  title: const Text(
+                    'Number of Bags',
+                    style: TextStyle(color: Colors.green),
+                  ),
+                  trailing: DropdownButton<int>(
+                    value: numberOfBags,
+                    onChanged: (newValue) {
+                      setState(() {
+                        numberOfBags = newValue!;
+                      });
+                    },
+                    items: List.generate(
+                      5,
+                      (index) => DropdownMenuItem<int>(
+                        value: index,
+                        child: Text('$index'),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            const Text(
-              'Arrival Date:',
-              style: TextStyle(
-                color: Colors.green,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () async {
-                final selectedDate = await showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime.now(),
-                  lastDate: DateTime.now().add(const Duration(days: 365)),
-                );
-                if (selectedDate != null) {
-                  setState(() {
-                    arrivalDate = selectedDate;
-                  });
-                }
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-              ),
-              child: Text(
-                arrivalDate != null
-                    ? '${arrivalDate!.day}/${arrivalDate!.month}/${arrivalDate!.year}'
-                    : 'Select Date',
-                style: const TextStyle(color: Colors.green),
-              ),
-            ),
-            const SizedBox(height: 10),
-            file != null
-                ? SizedBox(
-                    height: 150,
-                    width: double.infinity,
-                    child: Image.file(file!))
-                : ElevatedButton(
-                    onPressed: () async {
-                      file = await pickImage();
-                      final path = await FirebaseStorage.instance
-                          .ref("tickets")
-                          .child(FirebaseAuth.instance.currentUser!.uid);
+                const SizedBox(height: 10),
+                const Text(
+                  'Arrival Date:',
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () async {
+                    final selectedDate = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime.now(),
+                      lastDate: DateTime.now().add(const Duration(days: 365)),
+                    );
+                    if (selectedDate != null) {
+                      setState(() {
+                        arrivalDate = selectedDate;
+                      });
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                  ),
+                  child: Text(
+                    arrivalDate != null
+                        ? '${arrivalDate!.day}/${arrivalDate!.month}/${arrivalDate!.year}'
+                        : 'Select Date',
+                    style: const TextStyle(color: Colors.green),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                cubit.file != null
+                    ? SizedBox(
+                        height: 150,
+                        width: double.infinity,
+                        child: Image.file(cubit.file!))
+                    : ElevatedButton(
+                        onPressed: () async {
+                          cubit.file = await cubit.pickImage();
+                          final path = await FirebaseStorage.instance
+                              .ref("tickets")
+                              .child(FirebaseAuth.instance.currentUser!.uid);
 
-                      if (file != null) {
-                        final taskSnapshot = await path.putFile(file!);
-                        downloadUrl = await taskSnapshot.ref.getDownloadURL();
+                          if (cubit.file != null) {
+                            final taskSnapshot =
+                                await path.putFile(cubit.file!);
+                            downloadUrl =
+                                await taskSnapshot.ref.getDownloadURL();
+                          }
+                          setState(() {});
+                          print('Upload Ticket');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                        ),
+                        child: const Text(
+                          'Upload Ticket',
+                          style: TextStyle(color: Colors.green),
+                        ),
+                      ),
+              ],
+              const SizedBox(height: 10),
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Comments',
+                  prefixIcon: Icon(Icons.comment, color: Colors.green),
+                  border: OutlineInputBorder(),
+                ),
+                maxLines: null,
+                style: const TextStyle(color: Colors.green),
+                onChanged: (value) {
+                  setState(() {
+                    comments = value;
+                  });
+                },
+              ),
+              const SizedBox(height: 20),
+              BlocConsumer<CartCubit, CartState>(
+                listener: (context, state) {
+                  // TODO: implement listener
+                },
+                builder: (context, state) {
+                  final cartCubit = CartCubit.get(context);
+                  final reservationCubit = ReservationCubit.get(context);
+                  return ElevatedButton(
+                    onPressed: () async {
+                      print("object");
+                      if (_formKey.currentState!.validate()) {
+                        print("object");
+
+                        final reservation = ReservationModel(
+                          name: name,
+                          phoneNumber: phoneNumber,
+                          peakOfAirport: peakFromAirport,
+                          arrivalTime: arrivalDate,
+                          numberOfBags: numberOfBags,
+                          fileUrl: downloadUrl,
+                          email: email,
+                          reserved: false,
+                          uid: FirebaseAuth.instance.currentUser!.uid,
+                          numberOfGuests: numberOfGuests,
+                          cartItems: widget.cartList,
+                          comments: comments,
+                        );
+
+                        final res =
+                            await reservationCubit.addReservation(reservation);
+
+                        if (res) {
+                          for (var i in widget.trips) {
+                            cartCubit.remove(i);
+                            cartCubit.cartItems.clear();
+                          }
+                          showSnakbar(
+                              context,
+                              "reservation added successfully, we will contact you soon",
+                              Green,
+                              const Duration(seconds: 10));
+                          Navigator.pop(context);
+                          TripsCubit.get(context).currentIndex = 0;
+                          cubit.file!.delete();
+                        }
                       }
-                      setState(() {});
-                      print('Upload Ticket');
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
+                      backgroundColor: Colors.green,
                     ),
                     child: const Text(
-                      'Upload Ticket',
-                      style: TextStyle(color: Colors.green),
+                      'Submit',
+                      style: TextStyle(color: Colors.white),
                     ),
-                  ),
-          ],
-          const SizedBox(height: 10),
-          TextFormField(
-            decoration: const InputDecoration(
-              labelText: 'Comments',
-              prefixIcon: Icon(Icons.comment, color: Colors.green),
-              border: OutlineInputBorder(),
-            ),
-            maxLines: null,
-            style: const TextStyle(color: Colors.green),
-            onChanged: (value) {
-              setState(() {
-                comments = value;
-              });
-            },
-          ),
-          const SizedBox(height: 20),
-          BlocConsumer<CartCubit, CartState>(
-            listener: (context, state) {
-              // TODO: implement listener
-            },
-            builder: (context, state) {
-              final cubit = CartCubit.get(context);
-              final reservationCubit = ReservationCubit.get(context);
-              return ElevatedButton(
-                onPressed: () async {
-                  print("object");
-                  if (_formKey.currentState!.validate()) {
-                    print("object");
-
-                    final reservation = ReservationModel(
-                      name: name,
-                      phoneNumber: phoneNumber,
-                      peakOfAirport: peakFromAirport,
-                      arrivalTime: arrivalDate,
-                      numberOfBags: numberOfBags,
-                      fileUrl: downloadUrl,
-                      email: email,
-                      reserved: false,
-                      uid: FirebaseAuth.instance.currentUser!.uid,
-                      numberOfGuests: numberOfGuests,
-                      cartItems: widget.cartList,
-                      comments: comments,
-                    );
-
-                    final res =
-                        await reservationCubit.addReservation(reservation);
-
-                    if (res) {
-                      for (var i in widget.trips) {
-                        cubit.remove(i);
-                        cubit.cartItems.clear();
-                      }
-                      showSnakbar(
-                          context,
-                          "reservation added successfully, we will contact you soon",
-                          Green,
-                          const Duration(seconds: 10));
-                      Navigator.pop(context);
-                      TripsCubit.get(context).currentIndex = 0;
-                    }
-                  }
+                  );
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                ),
-                child: const Text(
-                  'Submit',
-                  style: TextStyle(color: Colors.white),
-                ),
-              );
-            },
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

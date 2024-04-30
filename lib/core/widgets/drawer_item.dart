@@ -24,9 +24,7 @@ class DrawerItem extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         final selectedIndex = DrawerCubit.get(context).currentIndex;
-        bool isSelectedIndex() {
-          return index == selectedIndex;
-        }
+        bool isSelectedIndex() => index == selectedIndex;
 
         return ListTile(
           leading: Icon(

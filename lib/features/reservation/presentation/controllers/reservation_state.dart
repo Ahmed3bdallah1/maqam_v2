@@ -1,3 +1,4 @@
+import 'dart:io';
 
 import 'package:maqam_v2/features/reservation/models/reservation_model.dart';
 
@@ -28,3 +29,17 @@ class GetReservationsError extends ReservationState {
 }
 
 class GetReservationsLoading extends ReservationState {}
+
+class PickFileLoading extends ReservationState {}
+
+class PickFileSuccess extends ReservationState {
+  final File file;
+
+  PickFileSuccess({required this.file});
+}
+
+class PickFileFailure extends ReservationState {
+  final String error;
+
+  PickFileFailure({required this.error});
+}
