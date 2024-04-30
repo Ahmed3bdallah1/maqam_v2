@@ -64,6 +64,26 @@ class ReservationCubit extends Cubit<ReservationState> {
     }
   }
 
+
+  Future<List<ReservationModel>> acceptedReservations() async {
+    try {
+      emit(GetReservationsLoading());
+      final list = await reservationRepo.acceptedReservations();
+      if (list.isNotEmpty) {
+        print("success");
+        emit(GetReservationsSuccess(reservations: list));
+        return list;
+      } else {
+        emit(GetReservationsError(error: "No reservations found"));
+        return [];
+      }
+    } catch (e) {
+      print(e.toString());
+      emit(GetReservationsError(error: "unable to fetch to reservation"));
+      return [];
+    }
+  }
+
   Future<File?> pickImage() async {
     emit(PickFileLoading());
     File? image;

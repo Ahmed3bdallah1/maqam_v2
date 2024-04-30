@@ -30,7 +30,30 @@ class ReservationRepoImp extends ReservationRepo {
     try {
       final querySnapshot = await firestore
           .collection("reservation")
-          .where("uid", isEqualTo: auth.currentUser!.uid)
+          .where("uid", isEqualTo: auth.currentUser!.uid).where("reserved",isEqualTo: false)
+          .get();
+
+      List<ReservationModel> reservationList = [];
+
+      print(querySnapshot.size);
+      for (var doc in querySnapshot.docs) {
+        ReservationModel reservation = ReservationModel.fromMap(doc.data());
+        reservationList.add(reservation);
+      }
+      print(reservationList.length);
+      return reservationList;
+    } catch (e) {
+      print("==========error========");
+      print(e);
+      return [];
+    }
+  }
+  @override
+  Future<List<ReservationModel>> acceptedReservations() async {
+    try {
+      final querySnapshot = await firestore
+          .collection("reservation")
+          .where("uid", isEqualTo: auth.currentUser!.uid).where("reserved",isEqualTo: true)
           .get();
 
       List<ReservationModel> reservationList = [];
