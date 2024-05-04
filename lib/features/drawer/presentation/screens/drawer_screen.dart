@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:maqam_v2/app/home_screen.dart';
@@ -20,6 +21,8 @@ class DrawerPage extends StatefulWidget {
 }
 
 class _DrawerPageState extends State<DrawerPage> {
+  DateTime? currentBackPressTime;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -27,29 +30,55 @@ class _DrawerPageState extends State<DrawerPage> {
     NetworkInfo.checkConnectivity(context);
   }
 
+  Future<bool> onPop() async {
+    var index = DrawerCubit.get(context).currentIndex;
+    if (index != 0) {
+      DrawerCubit.get(context).changeTab(0);
+      return false;
+    } else {
+      var date = DateTime.now();
+      if (currentBackPressTime == null ||
+          date.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
+        currentBackPressTime = date;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Press back again to exit'),
+            duration: Duration(seconds: 2),
+          ),
+        );
+        return false;
+      } else {
+        return true;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<DrawerCubit, DrawerPageState>(
         listener: (context, state) {},
         builder: (context, state) {
-          final index = DrawerCubit.get(context).currentIndex;
-          return ZoomDrawer(
-            isRtl: false,
-            duration: const Duration(milliseconds: 250),
-            controller: zoomDrawerController,
-            style: DrawerStyle.style3,
-            menuScreen: const MenuScreen(),
-            mainScreen: [
-              const HomeScreen(),
-              const SearchScreen(),
-              const CartScreen(),
-            ][index],
-            mainScreenTapClose: false,
-            borderRadius: 70.0,
-            showShadow: true,
-            angle: 0,
-            menuBackgroundColor: Green,
-            slideWidth: MediaQuery.of(context).size.width * 0.75,
+          var index = DrawerCubit.get(context).currentIndex;
+          return WillPopScope(
+            onWillPop: onPop,
+            child: ZoomDrawer(
+              isRtl: false,
+              duration: const Duration(milliseconds: 250),
+              controller: zoomDrawerController,
+              style: DrawerStyle.style3,
+              menuScreen: const MenuScreen(),
+              mainScreen: [
+                const HomeScreen(),
+                const SearchScreen(),
+                const CartScreen(),
+              ][index],
+              mainScreenTapClose: false,
+              borderRadius: 70.0,
+              showShadow: true,
+              angle: 0,
+              menuBackgroundColor: Green,
+              slideWidth: MediaQuery.of(context).size.width * 0.75,
+            ),
           );
         });
   }
