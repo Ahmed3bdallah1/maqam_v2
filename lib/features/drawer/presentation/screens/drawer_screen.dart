@@ -36,14 +36,16 @@ class _DrawerPageState extends State<DrawerPage> {
       DrawerCubit.get(context).changeTab(0);
       return false;
     } else {
-      var date = DateTime.now();
+      DateTime date = DateTime.now();
       if (currentBackPressTime == null ||
           date.difference(currentBackPressTime!) > const Duration(seconds: 2)) {
         currentBackPressTime = date;
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Press back again to exit'),
-            duration: Duration(seconds: 2),
+          SnackBar(
+            backgroundColor: Green,
+            behavior: SnackBarBehavior.floating,
+            content: const Text('Press back again to exit'),
+            duration: const Duration(seconds: 1),
           ),
         );
         return false;
