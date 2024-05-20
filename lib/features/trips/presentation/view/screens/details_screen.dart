@@ -135,23 +135,41 @@ class DetailsScreen extends StatelessWidget {
               ),
               const SizedBox(height: 15),
               Padding(
-                padding: const EdgeInsets.only(left: 25),
+                padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(
-                      Icons.location_on,
-                      color: Colors.grey,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 4),
-                      child: Text(
-                        trip.location,
-                        style: const TextStyle(
-                          fontSize: 16,
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.location_on,
                           color: Colors.grey,
                         ),
-                      ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 4),
+                          child: Text(
+                            trip.location,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
+                    Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Green),
+                          borderRadius: BorderRadius.circular(12)),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 4, horizontal: 10),
+                        child: Text(
+                          "Price : ${trip.price.toString()} US",
+                          style: TextStyle(color: Green, fontSize: 20),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -172,6 +190,34 @@ class DetailsScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              const SizedBox(height: 15),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Green),
+                      borderRadius: BorderRadius.circular(12)),
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                    child: Column(
+                      children: [
+                        Text(
+                          "Note",
+                          style: TextStyle(color: Green, fontSize: 20),
+                        ),
+                        const Text(
+                          "This pricing is for 1 or 2 persons otherwise the pricing will be on each-one else ",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
