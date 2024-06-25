@@ -24,7 +24,6 @@ import 'features/drawer/presentation/controller/drawer_cubit.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
-
   // externals
   final FirebaseAuth auth = FirebaseAuth.instance;
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -44,9 +43,7 @@ Future<void> init() async {
   sl.registerLazySingleton<TripRepo>(() => TripRepoImp(firestore: sl()));
   sl.registerLazySingleton<CartRepo>(
       () => CartRepoImp(firestore: sl(), auth: sl()));
-  sl.registerLazySingleton<SearchRepo>(
-      () => SearchRepoImp(firestore: sl()));
-
+  sl.registerLazySingleton<SearchRepo>(() => SearchRepoImp(firestore: sl()));
 
   // register controllers of the app
   sl.registerFactory(() => TripsCubit(sl()));
@@ -55,6 +52,4 @@ Future<void> init() async {
   sl.registerFactory(() => AuthCubit(sl()));
   sl.registerFactory(() => SearchCubit(sl()));
   sl.registerFactory(() => CartCubit(sl()));
-
-
 }
