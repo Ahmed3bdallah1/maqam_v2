@@ -300,7 +300,7 @@ class _ReservationFormState extends State<ReservationForm> {
                   price = price + i.price;
                 }
                 if (numberOfGuests > 2) {
-                  price = price * (numberOfGuests - 1);
+                  price = price * ((numberOfGuests - 1) * .9);
                 }
                 print(price);
                 if (_formKey.currentState!.validate()) {
