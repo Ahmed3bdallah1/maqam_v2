@@ -16,8 +16,10 @@ class HexColor extends Color {
   }
 }
 
-var Green = HexColor('#059843');
-var yellow = HexColor('#E1D800');
-var gray = HexColor('#F7F7F7');
-final ZoomDrawerController zoomDrawerController = ZoomDrawerController();
+class AppColors{
+  static var Green = HexColor('#059843');
+  static var yellow = HexColor('#E1D800');
+  static var gray = HexColor('#F7F7F7');
+  static final ZoomDrawerController zoomDrawerController = ZoomDrawerController();
+}
 

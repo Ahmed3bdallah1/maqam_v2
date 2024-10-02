@@ -21,7 +21,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? IconButton(
               icon: Icon(
                 Icons.menu,
-                color: Green,
+                color: AppColors.Green,
               ),
               onPressed: () {
                 ZoomDrawer.of(context)!.toggle();
@@ -32,7 +32,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         title,
         style:
-            TextStyle(fontSize: 27, color: Green, fontWeight: FontWeight.bold),
+            TextStyle(fontSize: 27, color: AppColors.Green, fontWeight: FontWeight.bold),
       ),
       actions: [widget ?? const SizedBox()],
     );

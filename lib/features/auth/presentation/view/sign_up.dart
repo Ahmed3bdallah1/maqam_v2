@@ -171,7 +171,7 @@ class _SignUpState extends State<SignUp> {
                                                 "welcome to our app${state.userCredential.user!.email ?? ""}"),
                                             duration:
                                                 const Duration(seconds: 2),
-                                            backgroundColor: Green,
+                                            backgroundColor: AppColors.Green,
                                             behavior: SnackBarBehavior.floating,
                                           ),
                                         );
@@ -199,7 +199,7 @@ class _SignUpState extends State<SignUp> {
                                           }
                                         },
                                         style: ElevatedButton.styleFrom(
-                                          backgroundColor: Green,
+                                          backgroundColor: AppColors.Green,
                                           shape: const RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(20),

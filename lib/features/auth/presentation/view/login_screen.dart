@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Green,
+      backgroundColor: AppColors.Green,
       body: SingleChildScrollView(
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
@@ -175,7 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     "welcome to our app${state.userCredential!.displayName ?? ""}"),
                                                 duration:
                                                     const Duration(seconds: 3),
-                                                backgroundColor: Green,
+                                                backgroundColor: AppColors.Green,
                                                 behavior:
                                                     SnackBarBehavior.floating,
                                               ),
@@ -210,7 +210,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                               }
                                             },
                                             style: ElevatedButton.styleFrom(
-                                              backgroundColor: Green,
+                                              backgroundColor: AppColors.Green,
                                               shape:
                                                   const RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.all(
@@ -280,7 +280,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           Icon(
                                             Icons.arrow_forward_rounded,
                                             size: 18,
-                                            color: Green,
+                                            color: AppColors.Green,
                                           )
                                         ],
                                       ),

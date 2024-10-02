@@ -43,7 +43,7 @@ class DrawerItem extends StatelessWidget {
               () {
                 DrawerCubit.get(context).changeTab(index);
 
-                zoomDrawerController.close?.call();
+                AppColors.zoomDrawerController.close?.call();
               },
         );
       },

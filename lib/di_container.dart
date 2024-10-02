@@ -37,7 +37,7 @@ Future<void> init() async {
 
   // register repos of the app
   sl.registerLazySingleton<AuthRepo>(
-      () => AuthRepoImp(firebaseAuth: sl(), firestore: sl()));
+      () => AuthRepoImp(firebaseAuth: sl<FirebaseAuth>(), firestore: sl<FirebaseFirestore>()));
   sl.registerLazySingleton<ReservationRepo>(
       () => ReservationRepoImp(auth: sl(), firestore: sl()));
   sl.registerLazySingleton<TripRepo>(() => TripRepoImp(firestore: sl()));
