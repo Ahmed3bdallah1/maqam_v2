@@ -45,9 +45,9 @@ class TripWidget1 extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   child: FancyShimmerImage(
                     shimmerHighlightColor:
-                    Green.withOpacity(.6),
+                    AppColors.Green.withOpacity(.6),
                     shimmerBaseColor:
-                    Green.withOpacity(.2),
+                    AppColors.Green.withOpacity(.2),
                     imageUrl: image,
                     errorWidget: Image.asset('assets/images/error.png'),
                     height: 120,

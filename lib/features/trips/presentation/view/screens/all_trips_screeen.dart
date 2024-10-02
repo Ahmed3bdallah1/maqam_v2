@@ -19,7 +19,7 @@ class AllTripsScreen extends StatelessWidget {
         backgroundColor: Colors.grey[200],
         title: Text(
           '${categoryName.toUpperCase()} Trips',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Green),
+          style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.Green),
         ),
       ),
       backgroundColor: Colors.grey[200],

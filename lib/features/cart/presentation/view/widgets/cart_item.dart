@@ -44,7 +44,7 @@ class CartCard extends StatelessWidget {
             children: [
               Text(
                 trip.name,
-                style:  TextStyle(color: Green, fontSize: 16,),
+                style:  TextStyle(color: AppColors.Green, fontSize: 16,),
                 maxLines: 2,
               ),
             ],

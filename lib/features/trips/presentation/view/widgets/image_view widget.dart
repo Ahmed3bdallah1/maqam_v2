@@ -27,8 +27,8 @@ class ImageViwer extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: FancyShimmerImage(
-                  shimmerHighlightColor: Green.withOpacity(.6),
-                  shimmerBaseColor: Green.withOpacity(.2),
+                  shimmerHighlightColor: AppColors.Green.withOpacity(.6),
+                  shimmerBaseColor: AppColors.Green.withOpacity(.2),
                   imageUrl: image[index],
                   errorWidget: Image.asset('assets/images/error.png'),
                 ),

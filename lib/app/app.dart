@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: AppRoutes.routes,
+        theme: ,
         title: "Maqam",
         home: const SplashScreen(),
       ),

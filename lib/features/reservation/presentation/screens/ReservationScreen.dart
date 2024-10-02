@@ -332,7 +332,7 @@ class _ReservationFormState extends State<ReservationForm> {
                     showSnakbar(
                         context,
                         "reservation added successfully, we will contact you soon",
-                        Green,
+                        AppColors.Green,
                         const Duration(seconds: 10));
                     Navigator.pop(context);
                     TripsCubit.get(context).currentIndex = 0;

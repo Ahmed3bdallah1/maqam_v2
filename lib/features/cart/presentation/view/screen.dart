@@ -45,7 +45,7 @@ class _CartScreenState extends State<CartScreen> {
                 },
                 child: Icon(
                   CupertinoIcons.doc_checkmark_fill,
-                  color: Green,
+                  color: AppColors.Green,
                 ),
               ),
             ),
@@ -136,7 +136,7 @@ class _CartScreenState extends State<CartScreen> {
                     },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
-                      backgroundColor: Green,
+                      backgroundColor: AppColors.Green,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),

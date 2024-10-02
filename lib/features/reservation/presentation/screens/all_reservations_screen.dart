@@ -53,7 +53,7 @@ class AllReservationScreen extends StatelessWidget {
                               height: 150,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
-                                color: Green.withOpacity(.15),
+                                color: AppColors.Green.withOpacity(.15),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
@@ -96,9 +96,9 @@ class AllReservationScreen extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Green.withOpacity(.15),
+                              color: AppColors.Green.withOpacity(.15),
                               borderRadius: BorderRadius.circular(12),
-                              border: Border.all(color: Green),
+                              border: Border.all(color: AppColors.Green),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -110,23 +110,23 @@ class AllReservationScreen extends StatelessWidget {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Text(item.name.toUpperCase(),
-                                          style: TextStyle(color: Green, fontSize: 16)),
+                                          style: TextStyle(color: AppColors.Green, fontSize: 16)),
                                       const SizedBox(height: 5),
                                       Text(item.email,
-                                          style: TextStyle(color: Green, fontSize: 16)),
+                                          style: TextStyle(color: AppColors.Green, fontSize: 16)),
                                       const SizedBox(height: 5),
                                       Text(item.phoneNumber,
-                                          style: TextStyle(color: Green, fontSize: 16)),
+                                          style: TextStyle(color: AppColors.Green, fontSize: 16)),
                                       const SizedBox(height: 10),
                                       Row(
                                         children: [
                                           Text("Places: ",
                                               style: TextStyle(
-                                                  color: Green, fontSize: 16)),
+                                                  color: AppColors.Green, fontSize: 16)),
                                           for (var i in item.cartItems)
                                             Text("$i, ",
                                                 style: TextStyle(
-                                                    color: Green, fontSize: 16)),
+                                                    color: AppColors.Green, fontSize: 16)),
                                         ],
                                       ),
                                     ],
@@ -137,7 +137,7 @@ class AllReservationScreen extends StatelessWidget {
                                         children: [
                                           Text("Reserved",
                                               style: TextStyle(
-                                                  color: Green, fontSize: 16)),
+                                                  color: AppColors.Green, fontSize: 16)),
                                           const SizedBox(width: 5),
                                           item.reserved == true
                                               ? const Icon(
@@ -175,7 +175,7 @@ class AllReservationScreen extends StatelessWidget {
                           "Something went wrong",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Green,
+                            color: AppColors.Green,
                             fontSize: 16,
                           ),
                         ),
@@ -218,7 +218,7 @@ class AllReservationScreen extends StatelessWidget {
                               height: 150,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
-                                color: Green.withOpacity(.15),
+                                color: AppColors.Green.withOpacity(.15),
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
@@ -261,9 +261,9 @@ class AllReservationScreen extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Green.withOpacity(.15),
+                              color: AppColors.Green.withOpacity(.15),
                               borderRadius: BorderRadius.circular(12),
-                              border: Border.all(color: Green),
+                              border: Border.all(color: AppColors.Green),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -275,23 +275,23 @@ class AllReservationScreen extends StatelessWidget {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Text(item.name.toUpperCase(),
-                                          style: TextStyle(color: Green, fontSize: 16)),
+                                          style: TextStyle(color: AppColors.Green, fontSize: 16)),
                                       const SizedBox(height: 5),
                                       Text(item.email,
-                                          style: TextStyle(color: Green, fontSize: 16)),
+                                          style: TextStyle(color: AppColors.Green, fontSize: 16)),
                                       const SizedBox(height: 5),
                                       Text(item.phoneNumber,
-                                          style: TextStyle(color: Green, fontSize: 16)),
+                                          style: TextStyle(color: AppColors.Green, fontSize: 16)),
                                       const SizedBox(height: 10),
                                       Row(
                                         children: [
                                           Text("Places: ",
                                               style: TextStyle(
-                                                  color: Green, fontSize: 16)),
+                                                  color: AppColors.Green, fontSize: 16)),
                                           for (var i in item.cartItems)
                                             Text("$i, ",
                                                 style: TextStyle(
-                                                    color: Green, fontSize: 16)),
+                                                    color: AppColors.Green, fontSize: 16)),
                                         ],
                                       ),
                                     ],
@@ -302,7 +302,7 @@ class AllReservationScreen extends StatelessWidget {
                                         children: [
                                           Text("Reserved",
                                               style: TextStyle(
-                                                  color: Green, fontSize: 16)),
+                                                  color: AppColors.Green, fontSize: 16)),
                                           const SizedBox(width: 5),
                                           item.reserved == true
                                               ? const Icon(
@@ -340,7 +340,7 @@ class AllReservationScreen extends StatelessWidget {
                           "Something went wrong",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Green,
+                            color: AppColors.Green,
                             fontSize: 16,
                           ),
                         ),

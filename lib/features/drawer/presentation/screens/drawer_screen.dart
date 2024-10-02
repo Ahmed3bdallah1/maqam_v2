@@ -42,7 +42,7 @@ class _DrawerPageState extends State<DrawerPage> {
         currentBackPressTime = date;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            backgroundColor: Green,
+            backgroundColor: AppColors.Green,
             behavior: SnackBarBehavior.floating,
             content: const Text('Press back again to exit'),
             duration: const Duration(seconds: 1),
@@ -66,7 +66,7 @@ class _DrawerPageState extends State<DrawerPage> {
             child: ZoomDrawer(
               isRtl: false,
               duration: const Duration(milliseconds: 250),
-              controller: zoomDrawerController,
+              controller: AppColors.zoomDrawerController,
               style: DrawerStyle.style3,
               menuScreen: const MenuScreen(),
               mainScreen: [
@@ -78,7 +78,7 @@ class _DrawerPageState extends State<DrawerPage> {
               borderRadius: 70.0,
               showShadow: true,
               angle: 0,
-              menuBackgroundColor: Green,
+              menuBackgroundColor: AppColors.Green,
               slideWidth: MediaQuery.of(context).size.width * 0.75,
             ),
           );

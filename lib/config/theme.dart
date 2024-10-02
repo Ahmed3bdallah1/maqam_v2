@@ -47,12 +47,12 @@ ThemeData darkTheme = ThemeData(
     ),
   ),
   iconTheme: const IconThemeData(color: Colors.white),
-  scaffoldBackgroundColor: gray,
+  scaffoldBackgroundColor: AppColors.gray,
 );
 
 ThemeData lightTheme = ThemeData(
   primarySwatch: Colors.indigo,
-  primaryColor: Green,
+  primaryColor: AppColors.Green,
   appBarTheme: const AppBarTheme(
       titleSpacing: 20.0,
       backgroundColor: Colors.transparent,

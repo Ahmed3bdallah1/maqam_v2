@@ -10,7 +10,7 @@ class HeadHomeTitle extends StatelessWidget {
     return Text(
       title,
       style: TextStyle(
-        color: Green,
+        color: AppColors.Green,
         fontSize: 25,
         fontWeight: FontWeight.bold,
       ),

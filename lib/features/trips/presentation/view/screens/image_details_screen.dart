@@ -78,7 +78,7 @@ class ImageDetailsScreen extends StatelessWidget {
                   maqam.name,
                   style: TextStyle(
                     fontSize: 20,
-                    color: Green,
+                    color: AppColors.Green,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

@@ -17,7 +17,7 @@ class MenuScreen extends StatelessWidget {
     AuthCubit cubit = AuthCubit.get(context);
     final bool user = cubit.userChecker();
     return Scaffold(
-      backgroundColor: Green,
+      backgroundColor: AppColors.Green,
       body: Stack(
         children: [
           Positioned(

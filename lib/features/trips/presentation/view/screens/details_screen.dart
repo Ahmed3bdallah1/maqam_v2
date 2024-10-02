@@ -98,9 +98,9 @@ class DetailsScreen extends StatelessWidget {
                                       child: ClipOval(
                                         child: FancyShimmerImage(
                                           shimmerHighlightColor:
-                                              Green.withOpacity(.6),
+                                              AppColors.Green.withOpacity(.6),
                                           shimmerBaseColor:
-                                              Green.withOpacity(.2),
+                                              AppColors.Green.withOpacity(.2),
                                           imageUrl: item.images[0],
                                           errorWidget: Image.asset(
                                               'assets/images/error.png'),
@@ -128,7 +128,7 @@ class DetailsScreen extends StatelessWidget {
                   trip.name,
                   style: TextStyle(
                     fontSize: 25,
-                    color: Green,
+                    color: AppColors.Green,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -159,14 +159,14 @@ class DetailsScreen extends StatelessWidget {
                     ),
                     Container(
                       decoration: BoxDecoration(
-                          border: Border.all(color: Green),
+                          border: Border.all(color: AppColors.Green),
                           borderRadius: BorderRadius.circular(12)),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 4, horizontal: 10),
                         child: Text(
                           "Price : ${trip.price.toString()} US",
-                          style: TextStyle(color: Green, fontSize: 20),
+                          style: TextStyle(color: AppColors.Green, fontSize: 20),
                         ),
                       ),
                     )
@@ -195,7 +195,7 @@ class DetailsScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Container(
                   decoration: BoxDecoration(
-                      border: Border.all(color: Green),
+                      border: Border.all(color: AppColors.Green),
                       borderRadius: BorderRadius.circular(12)),
                   child: Padding(
                     padding:
@@ -204,7 +204,7 @@ class DetailsScreen extends StatelessWidget {
                       children: [
                         Text(
                           "Note",
-                          style: TextStyle(color: Green, fontSize: 20),
+                          style: TextStyle(color: AppColors.Green, fontSize: 20),
                         ),
                         const Text(
                           "This pricing is for 1 or 2 persons otherwise the pricing will be on each-one else ",
@@ -243,7 +243,7 @@ class DetailsScreen extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
-                      backgroundColor: Green,
+                      backgroundColor: AppColors.Green,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -269,7 +269,7 @@ class DetailsScreen extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
-                      backgroundColor: Green,
+                      backgroundColor: AppColors.Green,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
