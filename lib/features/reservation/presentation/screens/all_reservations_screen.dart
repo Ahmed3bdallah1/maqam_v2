@@ -1,11 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maqam_v2/core/constants.dart';
 import 'package:maqam_v2/core/widgets/custom_appbar.dart';
 import 'package:maqam_v2/features/reservation/models/reservation_model.dart';
 import 'package:maqam_v2/features/reservation/presentation/controllers/reservation_cubit.dart';
 import 'package:shimmer/shimmer.dart';
+import '../../../../di_container.dart';
 
 class AllReservationScreen extends StatelessWidget {
   const AllReservationScreen({super.key});
@@ -37,7 +36,7 @@ class AllReservationScreen extends StatelessWidget {
                 ),
               ),
               FutureBuilder<List<ReservationModel>>(
-                future: ReservationCubit.get(context).reservations(),
+                future: sl<ReservationCubit>().reservations(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return ListView.builder(
@@ -202,7 +201,7 @@ class AllReservationScreen extends StatelessWidget {
                 ),
               ),
               FutureBuilder<List<ReservationModel>>(
-                future: ReservationCubit.get(context).acceptedReservations(),
+                future: sl<ReservationCubit>().acceptedReservations(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return ListView.builder(

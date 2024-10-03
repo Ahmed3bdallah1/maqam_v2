@@ -6,6 +6,8 @@ import 'package:maqam_v2/features/trips/presentation/controllers/trips_cubit.dar
 import 'package:maqam_v2/features/trips/presentation/controllers/trips_state.dart';
 import 'package:maqam_v2/features/trips/presentation/view/widgets/location_list_view.dart';
 
+import '../../../../../di_container.dart';
+
 class SeeAllLocationScreen extends StatefulWidget {
   final List<Trip> trips;
 
@@ -23,7 +25,7 @@ class _SeeAllLocationScreenState extends State<SeeAllLocationScreen> {
       body: BlocConsumer<TripsCubit, TripsState>(
         listener: (context, state) {},
         builder: (context, state) {
-          final cubit = TripsCubit.get(context);
+          final cubit = sl<TripsCubit>();
           return LocationGridView(
               future: cubit.getLocation(), trips: widget.trips);
         },

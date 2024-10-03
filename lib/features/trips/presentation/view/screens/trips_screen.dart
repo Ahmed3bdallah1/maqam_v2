@@ -8,6 +8,7 @@ import 'package:maqam_v2/features/trips/presentation/view/widgets/head_home_titl
 import 'package:maqam_v2/features/trips/presentation/view/widgets/location_list_view.dart';
 import 'package:maqam_v2/features/trips/presentation/view/widgets/trips.dart';
 import 'package:shimmer/shimmer.dart';
+import '../../../../../di_container.dart';
 import '../../../../search/presentation/view/search_screen.dart';
 import 'all_trips_screeen.dart';
 
@@ -23,7 +24,7 @@ class TripsScreen extends StatelessWidget {
         // TODO: implement listener
       },
       builder: (context, state) {
-        final TripsCubit cubit = TripsCubit.get(context);
+        final TripsCubit cubit = sl<TripsCubit>();
         return StreamBuilder(
           stream: cubit.getTrips(),
           builder: (context, snapshot) {

@@ -1,9 +1,9 @@
-import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maqam_v2/core/widgets/snakbar.dart';
+import 'package:maqam_v2/features/drawer/presentation/controller/drawer_cubit.dart';
 import 'package:maqam_v2/features/reservation/models/reservation_model.dart';
 import 'package:maqam_v2/features/cart/presentation/controllers/cart_cubit.dart';
 import 'package:maqam_v2/features/cart/presentation/controllers/cart_state.dart';
@@ -11,7 +11,7 @@ import 'package:maqam_v2/features/reservation/presentation/controllers/reservati
 import 'package:maqam_v2/features/reservation/presentation/controllers/reservation_state.dart';
 import 'package:maqam_v2/features/trips/models/trip_model.dart';
 import '../../../../core/constants.dart';
-import '../../../trips/presentation/controllers/trips_cubit.dart';
+import '../../../../di_container.dart';
 
 class ReservationScreen extends StatelessWidget {
   final List<Trip> cartList;
@@ -56,7 +56,7 @@ class ReservationForm extends StatefulWidget {
       {super.key, required this.cartList, required this.trips});
 
   @override
-  _ReservationFormState createState() => _ReservationFormState();
+  State<StatefulWidget> createState() => _ReservationFormState();
 }
 
 class _ReservationFormState extends State<ReservationForm> {
@@ -77,7 +77,7 @@ class _ReservationFormState extends State<ReservationForm> {
       body: BlocConsumer<ReservationCubit, ReservationState>(
         listener: (context, state) {},
         builder: (context, state) {
-          final cubit = ReservationCubit.get(context);
+          final cubit = sl<ReservationCubit>();
           return Form(
             key: _formKey,
             child: ListView(
@@ -287,14 +287,13 @@ class _ReservationFormState extends State<ReservationForm> {
       bottomSheet: BlocConsumer<CartCubit, CartState>(
         listener: (context, state) {},
         builder: (context, state) {
-          final cartCubit = CartCubit.get(context);
-          final reservationCubit = ReservationCubit.get(context);
+          final cartCubit = sl<CartCubit>();
+          final reservationCubit = sl<ReservationCubit>();
           return SizedBox(
             height: 50,
             width: MediaQuery.of(context).size.width,
             child: ElevatedButton(
               onPressed: () async {
-                print("object");
                 double price = 0;
                 for (var i in widget.trips) {
                   price = price + i.price;
@@ -335,7 +334,7 @@ class _ReservationFormState extends State<ReservationForm> {
                         AppColors.Green,
                         const Duration(seconds: 10));
                     Navigator.pop(context);
-                    TripsCubit.get(context).currentIndex = 0;
+                    sl<DrawerCubit>().currentIndex = 0;
                     reservationCubit.file!.delete();
                   }
                 }

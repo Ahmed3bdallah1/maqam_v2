@@ -15,10 +15,9 @@ class ReservationCubit extends Cubit<ReservationState> {
 
   File? file;
 
-  static ReservationCubit get(BuildContext context) => BlocProvider.of(context);
+  // static ReservationCubit get(BuildContext context) => BlocProvider.of(context);
 
   Future<bool> addReservation(ReservationModel reservationModel) async {
-    print("object");
     try {
       emit(AddLoading());
       final bool = await reservationRepo.addReservation(reservationModel);

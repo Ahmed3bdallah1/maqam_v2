@@ -4,6 +4,7 @@ import 'package:maqam_v2/features/trips/models/trip_model.dart';
 import 'package:maqam_v2/features/trips/presentation/controllers/trips_cubit.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../../../di_container.dart';
 import '../screens/all_trips_screeen.dart';
 import 'location_widget.dart';
 
@@ -27,7 +28,7 @@ class LocationListView extends StatelessWidget {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  var list = TripsCubit.get(context)
+                  var list = sl<TripsCubit>()
                       .tripsRepo
                       .filterTrips(trips, data![index].location);
                   Navigator.push(
@@ -111,7 +112,7 @@ class LocationGridView extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
                   onTap: () {
-                    var list = TripsCubit.get(context)
+                    var list = sl<TripsCubit>()
                         .tripsRepo
                         .filterTrips(trips, data![index].location);
                     Navigator.push(

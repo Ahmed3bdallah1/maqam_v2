@@ -8,6 +8,7 @@ import 'package:maqam_v2/features/trips/models/trip_model.dart';
 import 'package:maqam_v2/features/trips/presentation/controllers/trips_cubit.dart';
 import 'package:maqam_v2/features/trips/presentation/controllers/trips_state.dart';
 import 'package:maqam_v2/features/trips/presentation/view/widgets/image_view%20widget.dart';
+import '../../../../../di_container.dart';
 import 'image_details_screen.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -58,7 +59,7 @@ class DetailsScreen extends StatelessWidget {
                 child: BlocConsumer<TripsCubit, TripsState>(
                   listener: (context, state) {},
                   builder: (context, state) {
-                    final cubit = TripsCubit.get(context);
+                    final cubit = sl<TripsCubit>();
                     return SizedBox(
                       height: MediaQuery.of(context).size.height * .1,
                       child: StreamBuilder(

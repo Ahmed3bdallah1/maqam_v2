@@ -10,14 +10,14 @@ class TripsCubit extends Cubit<TripsState> {
 
   TripsCubit(this.tripsRepo) : super(TripsInitial());
 
-  static TripsCubit get(BuildContext context) => BlocProvider.of(context);
-
-  int currentIndex = 0;
-
-  void changeTab(int value) {
-    currentIndex = value;
-    emit(ChangeNavigation());
-  }
+  // static TripsCubit get(BuildContext context) => BlocProvider.of(context);
+  //
+  // int currentIndex = 0;
+  //
+  // void changeTab(int value) {
+  //   currentIndex = value;
+  //   emit(ChangeNavigation());
+  // }
 
   Stream<Iterable<Trip>> getTrips() {
     return tripsRepo.getTrips();
