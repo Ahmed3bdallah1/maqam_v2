@@ -30,10 +30,10 @@ class _DrawerPageState extends State<DrawerPage> {
     NetworkInfo.checkConnectivity(context);
   }
 
-  Future<bool> onPop() async {
-    var index = DrawerCubit.get(context).currentIndex;
+  bool onPop()  {
+    var index = sl<DrawerCubit>().currentIndex;
     if (index != 0) {
-      DrawerCubit.get(context).changeTab(0);
+      sl<DrawerCubit>().changeTab(0);
       return false;
     } else {
       DateTime date = DateTime.now();
@@ -44,7 +44,7 @@ class _DrawerPageState extends State<DrawerPage> {
           SnackBar(
             backgroundColor: AppColors.Green,
             behavior: SnackBarBehavior.floating,
-            content: const Text('Press back again to exit'),
+            content: Text(AppStrings.exit),
             duration: const Duration(seconds: 1),
           ),
         );
@@ -60,9 +60,9 @@ class _DrawerPageState extends State<DrawerPage> {
     return BlocConsumer<DrawerCubit, DrawerPageState>(
         listener: (context, state) {},
         builder: (context, state) {
-          var index = DrawerCubit.get(context).currentIndex;
-          return WillPopScope(
-            onWillPop: onPop,
+          var index = sl<DrawerCubit>().currentIndex;
+          return PopScope(
+            canPop: onPop(),
             child: ZoomDrawer(
               isRtl: false,
               duration: const Duration(milliseconds: 250),

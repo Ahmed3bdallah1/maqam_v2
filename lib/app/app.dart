@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maqam_v2/config/routes.dart';
+import 'package:maqam_v2/core/constants.dart';
 import 'package:maqam_v2/di_container.dart' as di;
 import 'package:maqam_v2/features/auth/presentation/controllers/auth_cubit.dart';
 import 'package:maqam_v2/features/cart/presentation/controllers/cart_cubit.dart';
@@ -31,8 +32,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: AppRoutes.routes,
-        theme: ,
-        title: "Maqam",
+        title: AppStrings.appName,
         home: const SplashScreen(),
       ),
     );

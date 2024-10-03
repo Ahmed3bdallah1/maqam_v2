@@ -9,6 +9,8 @@ import 'package:maqam_v2/features/trips/presentation/controllers/trips_cubit.dar
 import 'package:maqam_v2/features/trips/presentation/controllers/trips_state.dart';
 import 'package:maqam_v2/features/trips/presentation/view/widgets/trips.dart';
 
+import '../../../../di_container.dart';
+
 class SearchScreen extends StatefulWidget {
   final bool? searchBar;
 
@@ -33,14 +35,14 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: widget.searchBar == false
-          ? const CustomAppBar(title: "Search", isRoot: true)
+          ? CustomAppBar(title: AppStrings.search, isRoot: true)
           : AppBar(),
       body: BlocConsumer<SearchCubit, SearchState>(
         listener: (context, state) {
           // TODO: implement listener
         },
         builder: (context, state) {
-          final SearchCubit cubit = SearchCubit.get(context);
+          final SearchCubit cubit = sl<SearchCubit>();
           return SingleChildScrollView(
             child: Padding(
               padding:
@@ -66,7 +68,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),
-                                hintText: "search",
+                                hintText: AppStrings.search,
                                 prefixIcon: const Icon(CupertinoIcons.search),
                                 suffixIcon: GestureDetector(
                                     onTap: () {

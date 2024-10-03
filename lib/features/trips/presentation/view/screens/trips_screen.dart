@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:maqam_v2/core/constants.dart';
 import 'package:maqam_v2/features/trips/presentation/controllers/trips_cubit.dart';
 import 'package:maqam_v2/features/trips/presentation/controllers/trips_state.dart';
 import 'package:maqam_v2/features/trips/presentation/view/screens/see_all_location.dart';
@@ -161,8 +162,8 @@ class TripsScreen extends StatelessWidget {
                                   ),
                                 );
                               },
-                              child: const Text('See All',
-                                  style: TextStyle(
+                              child: Text(AppStrings.seeAll,
+                                  style: const TextStyle(
                                     color: Colors.black26,
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
@@ -199,23 +200,23 @@ class TripsScreen extends StatelessWidget {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            child: const Padding(
-                              padding: EdgeInsets.symmetric(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
                                 horizontal: 20,
                                 vertical: 10,
                               ),
                               child: Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.search,
                                     color: Colors.grey,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   Text(
-                                    'Search',
-                                    style: TextStyle(
+                                    AppStrings.search,
+                                    style: const TextStyle(
                                       color: Colors.grey,
                                       fontSize: 20,
                                     ),
@@ -226,12 +227,12 @@ class TripsScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 30),
-                        const Padding(
+                         Padding(
                           padding: EdgeInsets.all(4.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              HeadHomeTitle(title: "Locations"),
+                              HeadHomeTitle(title: AppStrings.location),
                             ],
                           ),
                         ),
@@ -249,13 +250,13 @@ class TripsScreen extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              const HeadHomeTitle(title: 'Popular Trips'),
+                              HeadHomeTitle(title: AppStrings.popularNow),
                               SizedBox(
                                 height: 40,
                                 child: Shimmer.fromColors(
                                     baseColor: Colors.grey[300]!,
                                     highlightColor: Colors.grey[100]!,
-                                    child: const Text("See all")),
+                                    child: Text(AppStrings.seeAll)),
                               ),
                             ],
                           ),
@@ -271,12 +272,12 @@ class TripsScreen extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
-                        const Padding(
-                          padding: EdgeInsets.all(5.0),
+                         Padding(
+                          padding: const EdgeInsets.all(5.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              HeadHomeTitle(title: 'Recommended Trips'),
+                              HeadHomeTitle(title: AppStrings.recommendedTrips),
                             ],
                           ),
                         ),

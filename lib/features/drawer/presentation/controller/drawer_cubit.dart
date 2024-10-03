@@ -5,7 +5,7 @@ import 'drawer_state.dart';
 class DrawerCubit extends Cubit<DrawerPageState> {
   DrawerCubit() : super(DrawerInitial());
 
-  static DrawerCubit get(BuildContext context) => BlocProvider.of(context);
+  // static DrawerCubit get(BuildContext context) => BlocProvider.of(context);
 
   int currentIndex = 0;
 

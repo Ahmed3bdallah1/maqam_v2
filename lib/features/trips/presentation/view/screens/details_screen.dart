@@ -203,13 +203,13 @@ class DetailsScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          "Note",
+                          AppStrings.note,
                           style: TextStyle(color: AppColors.Green, fontSize: 20),
                         ),
-                        const Text(
-                          "This pricing is for 1 or 2 persons otherwise the pricing will be on each-one else ",
+                        Text(
+                          AppStrings.notes,
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.grey,
                           ),
                         ),
@@ -248,9 +248,9 @@ class DetailsScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    child: const Text(
-                      "Already in cart",
-                      style: TextStyle(
+                    child:  Text(
+                      AppStrings.alreadyInCart,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -274,9 +274,9 @@ class DetailsScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    child: const Text(
-                      "Book Now",
-                      style: TextStyle(
+                    child: Text(
+                      AppStrings.boolNow,
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),

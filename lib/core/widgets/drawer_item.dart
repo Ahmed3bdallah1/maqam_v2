@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maqam_v2/features/drawer/presentation/controller/drawer_cubit.dart';
 import 'package:maqam_v2/features/drawer/presentation/controller/drawer_state.dart';
+import '../../di_container.dart';
 import '../constants.dart';
 
 class DrawerItem extends StatelessWidget {
@@ -23,7 +24,7 @@ class DrawerItem extends StatelessWidget {
     return BlocConsumer<DrawerCubit, DrawerPageState>(
       listener: (context, state) {},
       builder: (context, state) {
-        final selectedIndex = DrawerCubit.get(context).currentIndex;
+        final selectedIndex = sl<DrawerCubit>().currentIndex;
         bool isSelectedIndex() => index == selectedIndex;
 
         return ListTile(
@@ -41,7 +42,7 @@ class DrawerItem extends StatelessWidget {
           ),
           onTap: onTap ??
               () {
-                DrawerCubit.get(context).changeTab(index);
+                sl<DrawerCubit>().changeTab(index);
 
                 AppColors.zoomDrawerController.close?.call();
               },

@@ -105,11 +105,11 @@ class TripWidget2 extends StatelessWidget {
   final String image;
 
   const TripWidget2({
-    Key? key,
+    super.key,
     required this.title,
     required this.location,
     required this.image,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
