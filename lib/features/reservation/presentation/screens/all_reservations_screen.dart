@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:maqam_v2/core/constants.dart';
 import 'package:maqam_v2/core/widgets/custom_appbar.dart';
 import 'package:maqam_v2/features/reservation/models/reservation_model.dart';
@@ -18,20 +19,20 @@ class AllReservationScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 60,vertical: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 60,vertical: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Expanded(child: Divider(color: Colors.green)),
-                    SizedBox(width: 10),
+                    Expanded(child: Divider(color: AppColors.Green)),
+                    const Gap(10),
                     Text(
-                      "Pending",
+                      AppStrings.pending,
                       style: TextStyle(
-                          color: Colors.green, fontWeight: FontWeight.bold),
+                          color: AppColors.Green, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(width: 10),
-                    Expanded(child: Divider(color: Colors.green)),
+                    const Gap(10),
+                    Expanded(child: Divider(color: AppColors.Green)),
                   ],
                 ),
               ),
@@ -46,8 +47,8 @@ class AllReservationScreen extends StatelessWidget {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Shimmer.fromColors(
-                            baseColor: Colors.green[300]!,
-                            highlightColor: Colors.green[100]!,
+                            baseColor: AppColors.Green.withOpacity(300),
+                            highlightColor: AppColors.Green.withOpacity(100),
                             child: Container(
                               height: 150,
                               width: MediaQuery.of(context).size.width,
@@ -76,11 +77,11 @@ class AllReservationScreen extends StatelessWidget {
                                   color: Colors.green,
                                 ),
                                 const SizedBox(height: 20),
-                                const Flexible(
+                                Flexible(
                                   child: Text(
-                                    "There is no reservations until now please Go back to the home screen",
+                                    AppStrings.noReservations,
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.green,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -134,7 +135,7 @@ class AllReservationScreen extends StatelessWidget {
                                     children: [
                                       Row(
                                         children: [
-                                          Text("Reserved",
+                                          Text(AppStrings.reserved,
                                               style: TextStyle(
                                                   color: AppColors.Green, fontSize: 16)),
                                           const SizedBox(width: 5),
@@ -171,7 +172,7 @@ class AllReservationScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 20),
                         Text(
-                          "Something went wrong",
+                          AppStrings.unKnownError,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: AppColors.Green,

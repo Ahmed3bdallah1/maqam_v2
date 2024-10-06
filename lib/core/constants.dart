@@ -38,4 +38,8 @@ class AppStrings {
   static String location = "Locations";
   static String popularNow = 'Popular Trips';
   static String recommendedTrips = 'Recommended Trips';
+  static String pending = "Pending";
+  static String reserved = "Reserved";
+  static String unKnownError = "Something went wrong";
+  static String noReservations = "There is no reservations until now please Go back to the home screen";
 }
