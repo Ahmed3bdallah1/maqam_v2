@@ -54,6 +54,15 @@ dependencies:
   fancy_shimmer_image: ^2.0.3
   shimmer: ^3.0.0
   gap: ^3.0.1
+  dartz: ^0.10.1
+  dio: ^5.7.0
+  get: ^4.6.6
+  logger: ^2.4.0
+  flutter_screenutil: ^5.9.3
+  google_fonts: ^6.2.1
+  google_maps_flutter: ^2.9.0
+  image_cropper: ^8.0.2
+  get_storage: ^2.1.1
 
 dev_dependencies:
   flutter_test:
